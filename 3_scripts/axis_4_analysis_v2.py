@@ -15,7 +15,7 @@ ZIP_HACKATHON = "../2_data/hacktown_experiment_data.zip"
 GLOBAL_STUDENT_EVALUATION_FILE = '../2_data/global_student_evaluation.csv'
 DATA_TEAM_FILE = '../2_data/en_data_teams.csv'
 # Output directory for the report and the high-resolution plots
-RESULTS_DIR = "research_results_axis_4"
+RESULTS_DIR = "../4_results/research_results_axis_4"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 # Visual style setup for academic publication
