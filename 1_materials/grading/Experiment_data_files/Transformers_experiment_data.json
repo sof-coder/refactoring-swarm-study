@@ -1,0 +1,170 @@
+[
+    {
+        "id": "d2084391-20f1-4d8d-a420-3d4719d4b58f",
+        "timestamp": "2026-02-28T23:59:06.427884",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash-lite",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "15b91ae4-4fd4-4d12-8b18-7b19eeac5d45",
+        "timestamp": "2026-02-28T23:59:06.511710",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash-lite",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "883d64a4-cf4c-46e0-b8da-bff519adc887",
+        "timestamp": "2026-02-28T23:59:06.527752",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "fef9d167-f018-4690-8e07-7821ba9b43e1",
+        "timestamp": "2026-02-28T23:59:06.539129",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "d8ba2628-d363-4561-9aea-04e124a0a856",
+        "timestamp": "2026-02-28T23:59:56.901574",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash-lite",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a263b6bc-217b-4cb6-b1ee-d89a87f3c373",
+        "timestamp": "2026-02-28T23:59:56.996324",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash-lite",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "48a2501f-484c-4d4c-b8f5-ecdb56fcf0d1",
+        "timestamp": "2026-02-28T23:59:57.012178",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "40408fd5-27fa-4dc7-85f7-eeaa56eb7d65",
+        "timestamp": "2026-02-28T23:59:57.023540",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1994876f-e95b-4cf0-9d99-1206e77cdadd",
+        "timestamp": "2026-03-01T00:00:07.760180",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Audit the project in the sandbox directory.\nThe sandbox root is: /home/nbx/Documents/agentic/Refactoring-Swarm-Equipe-06/sandbox/hidden_dataset\nAll file paths should be relative to the sandbox root (use '.' for current directory, or file names like 'bad_code.py').\nPlease analyze the code, create a summary and a TODO list of fixes.\nSave the report to a file named 'audit_report.md' in the sandbox root directory.",
+            "output_response": "The audit report has been generated and saved to 'audit_report.md' in the sandbox root directory. The report includes a summary of findings and a TODO list of fixes."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "02b34047-b373-4a51-bd6f-4018218da315",
+        "timestamp": "2026-03-01T00:01:04.955360",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash-lite",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a5f09958-a2e1-4999-ae1f-6d4df46d0124",
+        "timestamp": "2026-03-01T00:01:05.031056",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash-lite",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "2a3cab67-f52c-4f3a-8770-64f0e1adfe69",
+        "timestamp": "2026-03-01T00:01:05.036086",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "428f50a3-8938-4d28-b78a-b23d4790bd15",
+        "timestamp": "2026-03-01T00:01:05.036764",
+        "agent": "BaseAgent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Instantiate langchain_google_genai.GoogleGenAI for model gemini-2.5-flash",
+            "output_response": "Instance created: <class 'langchain_google_genai.llms.GoogleGenerativeAI'>"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ce3de3e7-8ee9-4f38-b496-3936359fb282",
+        "timestamp": "2026-03-01T00:01:16.939617",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash-lite",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Audit the project in the sandbox directory.\nThe sandbox root is: /home/nbx/Documents/agentic/Refactoring-Swarm-Equipe-06/sandbox/hidden_dataset\nAll file paths should be relative to the sandbox root (use '.' for current directory, or file names like 'bad_code.py').\nPlease analyze the code, create a summary and a TODO list of fixes.\nSave the report to a file named 'audit_report.md' in the sandbox root directory.",
+            "output_response": "The audit report has been generated and saved to `audit_report.md` in the sandbox root directory. It includes a summary of the issues found and a TODO list for fixes."
+        },
+        "status": "SUCCESS"
+    }
+]

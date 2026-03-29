@@ -1,0 +1,237 @@
+[
+    {
+        "id": "0120af1e-8c5a-49aa-a9a7-fc99ca2e0073",
+        "timestamp": "2026-02-28T23:28:59.165958",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "list_files",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset",
+            "timestamp": "2026-02-28T23:28:59.164944",
+            "pattern": "*.py",
+            "recursive": true,
+            "file_count": 3,
+            "duration_ms": 5.248,
+            "input_prompt": "List files in: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset",
+            "output_response": "Found 3 files"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e820fee2-6c92-421b-a57f-cc8973374d1d",
+        "timestamp": "2026-02-28T23:28:59.174907",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "read",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "timestamp": "2026-02-28T23:28:59.172879",
+            "file_size": 65,
+            "encoding": "utf-8",
+            "duration_ms": 3.305,
+            "input_prompt": "Read file: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 65 characters"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "cc1b3831-3cec-41ef-bcb2-7d172a4a74d2",
+        "timestamp": "2026-02-28T23:28:59.219591",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "read",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "timestamp": "2026-02-28T23:28:59.219591",
+            "file_size": 65,
+            "encoding": "utf-8",
+            "duration_ms": 6.61,
+            "input_prompt": "Read file: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 65 characters"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "bc87d449-ed93-4466-bda8-db5c90701c72",
+        "timestamp": "2026-02-28T23:29:02.639963",
+        "agent": "Toolsmith",
+        "model": "pylint",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "score": 9.0,
+            "issue_counts": {
+                "error": 1,
+                "warning": 0,
+                "convention": 0,
+                "refactor": 0,
+                "fatal": 0,
+                "info": 0,
+                "total": 1
+            },
+            "duration_seconds": 3.433,
+            "input_prompt": "Analyze code quality of bad_syntax.py",
+            "output_response": "Score: 9.0/10, Issues: 1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a98736d9-992c-4475-a387-ee4669d04c1b",
+        "timestamp": "2026-02-28T23:29:26.226227",
+        "agent": "LLM_Client",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_GEN",
+        "details": {
+            "input_prompt": "FICHIER: bad_syntax.py\nCONTENU:\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\nPYLINT: 9.0",
+            "output_response": "ERREUR: API Error 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "86d81a0f-aeae-4ef5-b579-1de37cdcca4e",
+        "timestamp": "2026-02-28T23:29:26.246227",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "read",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\logic_bug.py",
+            "timestamp": "2026-02-28T23:29:26.244196",
+            "file_size": 106,
+            "encoding": "utf-8",
+            "duration_ms": 4.5440000000000005,
+            "input_prompt": "Read file: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 106 characters"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9d86cedf-73fb-44dd-9406-380b9991fc53",
+        "timestamp": "2026-02-28T23:29:26.345039",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "read",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\logic_bug.py",
+            "timestamp": "2026-02-28T23:29:26.343007",
+            "file_size": 106,
+            "encoding": "utf-8",
+            "duration_ms": 10.314,
+            "input_prompt": "Read file: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 106 characters"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f65a62ea-035d-423d-aa05-a717b75ddecd",
+        "timestamp": "2026-02-28T23:29:29.227425",
+        "agent": "Toolsmith",
+        "model": "pylint",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\logic_bug.py",
+            "score": 9.7,
+            "issue_counts": {
+                "error": 0,
+                "warning": 0,
+                "convention": 3,
+                "refactor": 0,
+                "fatal": 0,
+                "info": 0,
+                "total": 3
+            },
+            "duration_seconds": 2.901,
+            "input_prompt": "Analyze code quality of logic_bug.py",
+            "output_response": "Score: 9.7/10, Issues: 3"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b8902952-1fe3-458f-b38d-ad1af5023375",
+        "timestamp": "2026-02-28T23:29:52.964581",
+        "agent": "LLM_Client",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_GEN",
+        "details": {
+            "input_prompt": "FICHIER: logic_bug.py\nCONTENU:\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\nPYLINT: 9.7",
+            "output_response": "ERREUR: API Error 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "0537c142-6c41-4268-8f80-8a891ab2e445",
+        "timestamp": "2026-02-28T23:29:52.989758",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "read",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\messy_code.py",
+            "timestamp": "2026-02-28T23:29:52.987733",
+            "file_size": 148,
+            "encoding": "utf-8",
+            "duration_ms": 6.141,
+            "input_prompt": "Read file: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 148 characters"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "4221cfbd-09c4-4625-bca1-217f59f459d6",
+        "timestamp": "2026-02-28T23:29:53.089418",
+        "agent": "Toolsmith",
+        "model": "Toolsmith",
+        "action": "DEBUG",
+        "details": {
+            "operation": "read",
+            "file_path": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\messy_code.py",
+            "timestamp": "2026-02-28T23:29:53.086844",
+            "file_size": 148,
+            "encoding": "utf-8",
+            "duration_ms": 11.704,
+            "input_prompt": "Read file: C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 148 characters"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "5e8f5a29-1892-4cfd-bbc8-c64df00e571a",
+        "timestamp": "2026-02-28T23:29:55.759721",
+        "agent": "Toolsmith",
+        "model": "pylint",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file": "C:\\Users\\Muhammad suleman\\Desktop\\refactoring-swarm-template\\sandbox\\hidden_dataset\\messy_code.py",
+            "score": 9.6,
+            "issue_counts": {
+                "error": 0,
+                "warning": 0,
+                "convention": 4,
+                "refactor": 0,
+                "fatal": 0,
+                "info": 0,
+                "total": 4
+            },
+            "duration_seconds": 2.689,
+            "input_prompt": "Analyze code quality of messy_code.py",
+            "output_response": "Score: 9.6/10, Issues: 4"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a15161d3-2fe3-46af-bb4b-278342eb6c88",
+        "timestamp": "2026-02-28T23:30:22.509473",
+        "agent": "LLM_Client",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_GEN",
+        "details": {
+            "input_prompt": "FICHIER: messy_code.py\nCONTENU:\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\nPYLINT: 9.6",
+            "output_response": "ERREUR: API Error 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    }
+]

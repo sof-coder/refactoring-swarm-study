@@ -1,0 +1,89 @@
+[
+  {
+    "timestamp": "2026-02-28T23:29:29.227399",
+    "agent_name": "Auditor_Agent",
+    "model_used": "gemini-2.5-flash",
+    "action_type": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\bad_syntax.py",
+      "pylint_score_before": 0.0,
+      "code_length": 2,
+      "input_prompt": "Analyse le fichier Python suivant et produis un plan de refactoring détaillé.\n\n**INFORMATIONS DU FICHIER:**\n- Nom: bad_syntax.py\n- Chemin: C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\bad_syntax.py\n- Score Pylint actuel: 0.0/10.0\n\n**RAPPORT PYLINT:**\n```\n************* Module bad_syntax\nsandbox\\sandbox\\hidden_dataset\\hidden_dataset\\bad_syntax.py:1:26: E0001: Parsing failed: 'expected ':' (bad_syntax, line 1)' (syntax-error)\n```\n\n**CODE SOURCE:**\n```",
+      "output_response": "```json\n{\n    \"critical_issues\": [\n        {\n            \"type\": \"SyntaxError\",\n            \"line\": 1,\n            \"description\": \"Missing colon ':' at the end of the function definition. This is a critical syntax error that prevents the code from being parsed and executed.\",\n            \"severity\": \"CRITICAL\",\n            \"suggested_fix\": \"Add a colon ':' after the function parameters: `def calculate_sum(a, b):`\"\n        }\n    ],\n    \"quality_issues\": [\n        {\n            \"type\": \"MissingDoc"
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:38.356706",
+    "agent_name": "Auditor_Agent",
+    "model_used": "gemini-2.5-flash",
+    "action_type": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\logic_bug.py",
+      "pylint_score_before": 2.5,
+      "code_length": 4,
+      "input_prompt": "Analyse le fichier Python suivant et produis un plan de refactoring détaillé.\n\n**INFORMATIONS DU FICHIER:**\n- Nom: logic_bug.py\n- Chemin: C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\logic_bug.py\n- Score Pylint actuel: 2.5/10.0\n\n**RAPPORT PYLINT:**\n```\n************* Module logic_bug\nsandbox\\sandbox\\hidden_dataset\\hidden_dataset\\logic_bug.py:4:0: C0304: Final newline missing (missing-final-newline)\nsandbox\\sandbox\\hidden_dataset\\hidden_dataset\\logic",
+      "output_response": "```json\n{\n    \"critical_issues\": [\n        {\n            \"type\": \"LogicalError\",\n            \"line\": 4,\n            \"description\": \"La fonction 'count_down' est censée décompter, mais la variable 'n' est incrémentée ('n += 1') au lieu d'être décrémentée. Cela crée une boucle infinie si 'n' est initialement positif, car la condition 'n > 0' restera toujours vraie et 'n' augmentera indéfiniment.\",\n            \"severity\": \"CRITICAL\",\n            \"suggested_fix\": \"Modifier l'opération d'incrémentati"
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:53.770531",
+    "agent_name": "Auditor_Agent",
+    "model_used": "gemini-2.5-flash",
+    "action_type": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\messy_code.py",
+      "pylint_score_before": 3.33,
+      "code_length": 7,
+      "input_prompt": "Analyse le fichier Python suivant et produis un plan de refactoring détaillé.\n\n**INFORMATIONS DU FICHIER:**\n- Nom: messy_code.py\n- Chemin: C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\messy_code.py\n- Score Pylint actuel: 3.33/10.0\n\n**RAPPORT PYLINT:**\n```\n************* Module messy_code\nsandbox\\sandbox\\hidden_dataset\\hidden_dataset\\messy_code.py:7:0: C0304: Final newline missing (missing-final-newline)\nsandbox\\sandbox\\hidden_dataset\\hidden_dataset\\",
+      "output_response": "```json\n{\n    \"critical_issues\": [],\n    \"quality_issues\": [\n        {\n            \"type\": \"MissingModuleDocstring\",\n            \"line\": 1,\n            \"description\": \"Le module 'messy_code.py' ne contient pas de docstring, ce qui rend difficile la compréhension rapide de son objectif et de son contenu.\",\n            \"severity\": \"QUALITY\",\n            \"suggested_fix\": \"Ajouter une docstring concise au début du fichier pour décrire la fonction du module, par exemple: `\\\"\\\"\\\"Ce module contient une"
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:00.064910",
+    "agent_name": "Fixer_Agent",
+    "model_used": "gemini-2.5-flash",
+    "action_type": "fix",
+    "status": "FAILURE",
+    "details": {
+      "file_corrected": "C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\bad_syntax.py",
+      "issues_to_fix": 2,
+      "original_code_length": 2,
+      "input_prompt": "Corrige le fichier Python suivant en appliquant le plan de refactoring fourni.\n\n**INFORMATIONS DU FICHIER:**\n- Nom: bad_syntax.py\n- Chemin: C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\bad_syntax.py\n\n**PLAN DE REFACTORING À SUIVRE:**\n**Étape 1: Correction du problème critique**\nCorriger l'erreur de syntaxe sur la ligne 1 en ajoutant un deux-points `:` à la fin de la définition de la fonction `calculate_sum`.\n**Étape 2: Amélioration de la qualité du",
+      "output_response": "NO_RESPONSE",
+      "error": "[Fixer_Agent] Échec après 3 tentatives: [Fixer_Agent] Erreur LLM: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 59.900644116s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 20\n}\n, retry_delay {\n  seconds: 59\n}\n]"
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:06.367993",
+    "agent_name": "Fixer_Agent",
+    "model_used": "gemini-2.5-flash",
+    "action_type": "fix",
+    "status": "FAILURE",
+    "details": {
+      "file_corrected": "C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\logic_bug.py",
+      "issues_to_fix": 5,
+      "original_code_length": 4,
+      "input_prompt": "Corrige le fichier Python suivant en appliquant le plan de refactoring fourni.\n\n**INFORMATIONS DU FICHIER:**\n- Nom: logic_bug.py\n- Chemin: C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\logic_bug.py\n\n**PLAN DE REFACTORING À SUIVRE:**\n**Étape 1: Correction du bug critique (Boucle infinie)**: Modifier la ligne 4 de 'n += 1' à 'n -= 1' pour que la fonction décompte correctement.\n**Étape 2: Ajout de la docstring du module**: Insérer une docstring au débu",
+      "output_response": "NO_RESPONSE",
+      "error": "[Fixer_Agent] Échec après 3 tentatives: [Fixer_Agent] Erreur LLM: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 53.595937209s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 20\n}\n, retry_delay {\n  seconds: 53\n}\n]"
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:12.647510",
+    "agent_name": "Fixer_Agent",
+    "model_used": "gemini-2.5-flash",
+    "action_type": "fix",
+    "status": "FAILURE",
+    "details": {
+      "file_corrected": "C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\messy_code.py",
+      "issues_to_fix": 7,
+      "original_code_length": 7,
+      "input_prompt": "Corrige le fichier Python suivant en appliquant le plan de refactoring fourni.\n\n**INFORMATIONS DU FICHIER:**\n- Nom: messy_code.py\n- Chemin: C:\\Users\\Hp\\Desktop\\Refactoring-Swarm-Equipe-2\\sandbox\\sandbox\\hidden_dataset\\hidden_dataset\\messy_code.py\n\n**PLAN DE REFACTORING À SUIVRE:**\n1. Ajouter une docstring au niveau du module pour décrire l'objectif général du fichier `messy_code.py`.\n2. Renommer la variable `x` en `X` (en supposant qu'il s'agit d'une constante) pour se conformer à la PEP 8, ou l",
+      "output_response": "NO_RESPONSE",
+      "error": "[Fixer_Agent] Échec après 3 tentatives: [Fixer_Agent] Erreur LLM: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 47.317948524s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 20\n}\n, retry_delay {\n  seconds: 47\n}\n]"
+    }
+  }
+]

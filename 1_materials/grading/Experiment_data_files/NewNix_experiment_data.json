@@ -1,0 +1,220 @@
+[
+    {
+        "id": "4de95729-0190-4b86-af9a-f81fd6e9dc48",
+        "timestamp": "2026-02-28T23:31:32.070911",
+        "agent": "AuditorAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the AUDITOR agent in a multi-agent refactoring system.\n\nYour mission:\n- Analyze the provided Python code.\n- Detect bugs, bad practices that could affect correctness, runtime errors, security risks, or testability issues.\n- DO NOT modify the code.\n- Produce a clear and structured refactoring plan.\n\nRules:\n- You are NOT allowed to write or modify files.\n- Only analyze and propose improvements that are relevant to code safety, correctness, or testability.\n- Ignore docstring style, formatting, naming conventions, or other stylistic choices.\n- If the code is correct, leave issues empty.\n- Be precise, concise, and technical.\n- Do NOT hallucinate libraries or files that do not exist.\n- Ignore low-risk testability issues for simple functions or I/O helpers.\n\n\nOutput format (STRICT JSON):\n{\n  \"summary\": \"Global assessment of the code quality\",\n  \"issues\": [\n    {\n      \"file\": \"file_name.py\",\n      \"type\": \"BUG | DESIGN | TEST | SECURITY\",\n      \"description\": \"What is wrong\",\n      \"severity\": \"LOW | MEDIUM | HIGH\"\n    }\n  ],\n  \"refactoring_plan\": [\n    {\n      \"file\": \"file_name.py\",\n      \"actions\": [\n        \"action 1\",\n        \"action 2\"\n      ]\n    }\n  ]\n}\n\nAnalyze the following code:\n----------------------------\n{CODE}\n----------------------------\n",
+            "output_response": {
+                "file": "sandbox\\hidden_dataset\\bad_syntax.py",
+                "status": "WARN",
+                "issues": [
+                    "No logging detected with log_experiment"
+                ],
+                "severity": [
+                    "MEDIUM"
+                ],
+                "llm_summary": {
+                    "summary": "The code is a simple function that correctly implements addition of two parameters. No critical issues detected.",
+                    "issues": [],
+                    "refactoring_plan": []
+                }
+            }
+        },
+        "status": "REVIEW"
+    },
+    {
+        "id": "c4f93863-580f-4bdd-a03a-70dbbe9c91ca",
+        "timestamp": "2026-02-28T23:31:32.871507",
+        "agent": "AuditorAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the AUDITOR agent in a multi-agent refactoring system.\n\nYour mission:\n- Analyze the provided Python code.\n- Detect bugs, bad practices that could affect correctness, runtime errors, security risks, or testability issues.\n- DO NOT modify the code.\n- Produce a clear and structured refactoring plan.\n\nRules:\n- You are NOT allowed to write or modify files.\n- Only analyze and propose improvements that are relevant to code safety, correctness, or testability.\n- Ignore docstring style, formatting, naming conventions, or other stylistic choices.\n- If the code is correct, leave issues empty.\n- Be precise, concise, and technical.\n- Do NOT hallucinate libraries or files that do not exist.\n- Ignore low-risk testability issues for simple functions or I/O helpers.\n\n\nOutput format (STRICT JSON):\n{\n  \"summary\": \"Global assessment of the code quality\",\n  \"issues\": [\n    {\n      \"file\": \"file_name.py\",\n      \"type\": \"BUG | DESIGN | TEST | SECURITY\",\n      \"description\": \"What is wrong\",\n      \"severity\": \"LOW | MEDIUM | HIGH\"\n    }\n  ],\n  \"refactoring_plan\": [\n    {\n      \"file\": \"file_name.py\",\n      \"actions\": [\n        \"action 1\",\n        \"action 2\"\n      ]\n    }\n  ]\n}\n\nAnalyze the following code:\n----------------------------\n{CODE}\n----------------------------\n",
+            "output_response": {
+                "file": "sandbox\\hidden_dataset\\logic_bug.py",
+                "status": "WARN",
+                "issues": [
+                    "No logging detected with log_experiment"
+                ],
+                "severity": [
+                    "MEDIUM"
+                ],
+                "llm_summary": {
+                    "summary": "Simple countdown function with basic functionality. No critical bugs or security issues detected.",
+                    "issues": [],
+                    "refactoring_plan": []
+                }
+            }
+        },
+        "status": "REVIEW"
+    },
+    {
+        "id": "7913fba9-e304-4b9f-be39-f1fb1e8e62cb",
+        "timestamp": "2026-02-28T23:31:35.306032",
+        "agent": "AuditorAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the AUDITOR agent in a multi-agent refactoring system.\n\nYour mission:\n- Analyze the provided Python code.\n- Detect bugs, bad practices that could affect correctness, runtime errors, security risks, or testability issues.\n- DO NOT modify the code.\n- Produce a clear and structured refactoring plan.\n\nRules:\n- You are NOT allowed to write or modify files.\n- Only analyze and propose improvements that are relevant to code safety, correctness, or testability.\n- Ignore docstring style, formatting, naming conventions, or other stylistic choices.\n- If the code is correct, leave issues empty.\n- Be precise, concise, and technical.\n- Do NOT hallucinate libraries or files that do not exist.\n- Ignore low-risk testability issues for simple functions or I/O helpers.\n\n\nOutput format (STRICT JSON):\n{\n  \"summary\": \"Global assessment of the code quality\",\n  \"issues\": [\n    {\n      \"file\": \"file_name.py\",\n      \"type\": \"BUG | DESIGN | TEST | SECURITY\",\n      \"description\": \"What is wrong\",\n      \"severity\": \"LOW | MEDIUM | HIGH\"\n    }\n  ],\n  \"refactoring_plan\": [\n    {\n      \"file\": \"file_name.py\",\n      \"actions\": [\n        \"action 1\",\n        \"action 2\"\n      ]\n    }\n  ]\n}\n\nAnalyze the following code:\n----------------------------\n{CODE}\n----------------------------\n",
+            "output_response": {
+                "file": "sandbox\\hidden_dataset\\messy_code.py",
+                "status": "WARN",
+                "issues": [
+                    "No logging detected with log_experiment"
+                ],
+                "severity": [
+                    "MEDIUM"
+                ],
+                "llm_summary": {
+                    "summary": "The code is generally correct but has a potential type safety issue due to lack of input validation. The function assumes the input is a number but doesn't validate this assumption.",
+                    "issues": [
+                        {
+                            "file": "code.py",
+                            "type": "BUG",
+                            "description": "The function is_valid_number doesn't validate input type, which could lead to runtime errors if non-numeric types are passed",
+                            "severity": "MEDIUM"
+                        }
+                    ],
+                    "refactoring_plan": [
+                        {
+                            "file": "code.py",
+                            "actions": [
+                                "Add type checking or try/except block to handle non-numeric inputs gracefully",
+                                "Consider adding input validation to prevent TypeError when non-numeric values are passed"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "status": "REVIEW"
+    },
+    {
+        "id": "d59e933b-9f74-46b7-b836-5201bc35c36e",
+        "timestamp": "2026-02-28T23:31:47.731084",
+        "agent": "JudgeAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the JUDGE agent in a self-healing refactoring system.\n\nYour mission:\n- Analyze test results and logs.\n- Decide if the system should STOP or RETRY.\n\nRules:\n- You do NOT modify code.\n- You only evaluate outcomes.\n- Be strict: success means tests pass AND no critical lint errors.\n- Only return valid JSON, Do not add any extra text or explanations.\n- Your JSON must use double quotes for all keys and string values.\n\nInput:\n- pytest output\n- pylint output\n\nOutput format (STRICT JSON):\n{\n  \"decision\": \"SUCCESS | RETRY\",\n  \"reason\": \"Short technical explanation\",\n  \"suggested_fix\": \"If RETRY, describe what should be corrected\"\n}\n\nPytest output:\n-----------------\n{PYTEST}\n-----------------\n\nPylint output:\n-----------------\n{PYLINT}\n-----------------",
+            "output_response": {
+                "agent": "JudgeAgent",
+                "decision": "RETRY",
+                "reason": "Tests or critical issues remain.\nPytest output:\n============================= test session starts =============================\nplatform win32 -- Python 3.11.6, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Users\\Nejem Eddine\\Desktop\\ML\\Refactoring-Swarm\nplugins: anyio-4.12.1\ncollected 0 items\n\n============================ no tests ran in 0.02s ============================\n\nPylint critical issues:\n************* Module hidden_dataset\nsandbox\\hidden_dataset\\__init__.py:1:0: F0010: error while code parsing: Unable to load file sandbox\\hidden_dataset\\__init__.py:\n[Errno 2] No such file or directory: 'sandbox\\\\hidden_dataset\\\\__init__.py' (parse-error)\n",
+                "suggested_fix": "Ensure the file 'sandbox/hidden_dataset/__init__.py' exists and is properly formatted for parsing",
+                "llm_feedback": "{\n  \"decision\": \"RETRY\",\n  \"reason\": \"No tests were collected and pylint reported a parse error due to missing file\",\n  \"suggested_fix\": \"Ensure the file 'sandbox/hidden_dataset/__init__.py' exists and is properly formatted for parsing\"\n}"
+            }
+        },
+        "status": "REVIEW"
+    },
+    {
+        "id": "0508e27d-7698-40aa-93e2-1145ff8e3ae4",
+        "timestamp": "2026-02-28T23:31:47.752158",
+        "agent": "Pipeline-Orchestrator",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "iteration": 1,
+            "decision": "RETRY",
+            "judge_reason": "Tests or critical issues remain.\nPytest output:\n============================= test session starts =============================\nplatform win32 -- Python 3.11.6, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Users\\Nejem Eddine\\Desktop\\ML\\Refactoring-Swarm\nplugins: anyio-4.12.1\ncollected 0 items\n\n============================ no tests ran in 0.02s ============================\n\nPylint critical issues:\n************* Module hidden_dataset\nsandbox\\hidden_dataset\\__init__.py:1:0: F0010: error while code parsing: Unable to load file sandbox\\hidden_dataset\\__init__.py:\n[Errno 2] No such file or directory: 'sandbox\\\\hidden_dataset\\\\__init__.py' (parse-error)\n",
+            "input_prompt": "Pipeline orchestrating audit/fix/judge cycle",
+            "output_response": "Fix summary: COMPLETE"
+        },
+        "status": "RETRY"
+    },
+    {
+        "id": "2ea8ac8b-99e8-4756-8405-4d89c00eac77",
+        "timestamp": "2026-02-28T23:31:48.669074",
+        "agent": "AuditorAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the AUDITOR agent in a multi-agent refactoring system.\n\nYour mission:\n- Analyze the provided Python code.\n- Detect bugs, bad practices that could affect correctness, runtime errors, security risks, or testability issues.\n- DO NOT modify the code.\n- Produce a clear and structured refactoring plan.\n\nRules:\n- You are NOT allowed to write or modify files.\n- Only analyze and propose improvements that are relevant to code safety, correctness, or testability.\n- Ignore docstring style, formatting, naming conventions, or other stylistic choices.\n- If the code is correct, leave issues empty.\n- Be precise, concise, and technical.\n- Do NOT hallucinate libraries or files that do not exist.\n- Ignore low-risk testability issues for simple functions or I/O helpers.\n\n\nOutput format (STRICT JSON):\n{\n  \"summary\": \"Global assessment of the code quality\",\n  \"issues\": [\n    {\n      \"file\": \"file_name.py\",\n      \"type\": \"BUG | DESIGN | TEST | SECURITY\",\n      \"description\": \"What is wrong\",\n      \"severity\": \"LOW | MEDIUM | HIGH\"\n    }\n  ],\n  \"refactoring_plan\": [\n    {\n      \"file\": \"file_name.py\",\n      \"actions\": [\n        \"action 1\",\n        \"action 2\"\n      ]\n    }\n  ]\n}\n\nAnalyze the following code:\n----------------------------\n{CODE}\n----------------------------\n",
+            "output_response": {
+                "file": "sandbox\\hidden_dataset\\bad_syntax.py",
+                "status": "WARN",
+                "issues": [
+                    "No logging detected with log_experiment"
+                ],
+                "severity": [
+                    "MEDIUM"
+                ],
+                "llm_summary": {
+                    "summary": "The code is a simple function that correctly implements addition of two parameters. No critical issues detected.",
+                    "issues": [],
+                    "refactoring_plan": []
+                }
+            }
+        },
+        "status": "REVIEW"
+    },
+    {
+        "id": "da3e70ad-6c1e-4824-9934-24c5c4ae693b",
+        "timestamp": "2026-02-28T23:31:49.498210",
+        "agent": "AuditorAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the AUDITOR agent in a multi-agent refactoring system.\n\nYour mission:\n- Analyze the provided Python code.\n- Detect bugs, bad practices that could affect correctness, runtime errors, security risks, or testability issues.\n- DO NOT modify the code.\n- Produce a clear and structured refactoring plan.\n\nRules:\n- You are NOT allowed to write or modify files.\n- Only analyze and propose improvements that are relevant to code safety, correctness, or testability.\n- Ignore docstring style, formatting, naming conventions, or other stylistic choices.\n- If the code is correct, leave issues empty.\n- Be precise, concise, and technical.\n- Do NOT hallucinate libraries or files that do not exist.\n- Ignore low-risk testability issues for simple functions or I/O helpers.\n\n\nOutput format (STRICT JSON):\n{\n  \"summary\": \"Global assessment of the code quality\",\n  \"issues\": [\n    {\n      \"file\": \"file_name.py\",\n      \"type\": \"BUG | DESIGN | TEST | SECURITY\",\n      \"description\": \"What is wrong\",\n      \"severity\": \"LOW | MEDIUM | HIGH\"\n    }\n  ],\n  \"refactoring_plan\": [\n    {\n      \"file\": \"file_name.py\",\n      \"actions\": [\n        \"action 1\",\n        \"action 2\"\n      ]\n    }\n  ]\n}\n\nAnalyze the following code:\n----------------------------\n{CODE}\n----------------------------\n",
+            "output_response": {
+                "file": "sandbox\\hidden_dataset\\logic_bug.py",
+                "status": "WARN",
+                "issues": [
+                    "No logging detected with log_experiment"
+                ],
+                "severity": [
+                    "MEDIUM"
+                ],
+                "llm_summary": {
+                    "summary": "Simple countdown function with basic functionality. No critical bugs or security issues detected.",
+                    "issues": [],
+                    "refactoring_plan": []
+                }
+            }
+        },
+        "status": "REVIEW"
+    },
+    {
+        "id": "aabc3337-07e8-49f9-909a-8c87cbf021ca",
+        "timestamp": "2026-02-28T23:31:52.155019",
+        "agent": "AuditorAgent",
+        "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "You are the AUDITOR agent in a multi-agent refactoring system.\n\nYour mission:\n- Analyze the provided Python code.\n- Detect bugs, bad practices that could affect correctness, runtime errors, security risks, or testability issues.\n- DO NOT modify the code.\n- Produce a clear and structured refactoring plan.\n\nRules:\n- You are NOT allowed to write or modify files.\n- Only analyze and propose improvements that are relevant to code safety, correctness, or testability.\n- Ignore docstring style, formatting, naming conventions, or other stylistic choices.\n- If the code is correct, leave issues empty.\n- Be precise, concise, and technical.\n- Do NOT hallucinate libraries or files that do not exist.\n- Ignore low-risk testability issues for simple functions or I/O helpers.\n\n\nOutput format (STRICT JSON):\n{\n  \"summary\": \"Global assessment of the code quality\",\n  \"issues\": [\n    {\n      \"file\": \"file_name.py\",\n      \"type\": \"BUG | DESIGN | TEST | SECURITY\",\n      \"description\": \"What is wrong\",\n      \"severity\": \"LOW | MEDIUM | HIGH\"\n    }\n  ],\n  \"refactoring_plan\": [\n    {\n      \"file\": \"file_name.py\",\n      \"actions\": [\n        \"action 1\",\n        \"action 2\"\n      ]\n    }\n  ]\n}\n\nAnalyze the following code:\n----------------------------\n{CODE}\n----------------------------\n",
+            "output_response": {
+                "file": "sandbox\\hidden_dataset\\messy_code.py",
+                "status": "WARN",
+                "issues": [
+                    "No logging detected with log_experiment"
+                ],
+                "severity": [
+                    "MEDIUM"
+                ],
+                "llm_summary": {
+                    "summary": "The code is functionally correct but has a documentation inconsistency. The function checks for values between 0 and 100 exclusive, but the docstring incorrectly states 0 to 100 without specifying exclusivity.",
+                    "issues": [
+                        {
+                            "file": "code.py",
+                            "type": "DESIGN",
+                            "description": "Docstring mismatch: function checks for exclusive range (0, 100) but docstring says 'between 0 and 100' without clarifying exclusivity",
+                            "severity": "LOW"
+                        }
+                    ],
+                    "refactoring_plan": [
+                        {
+                            "file": "code.py",
+                            "actions": [
+                                "Update docstring to clearly specify that the range is exclusive: 'Check if a number is between 0 and 100 (exclusive)'"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "status": "REVIEW"
+    }
+]

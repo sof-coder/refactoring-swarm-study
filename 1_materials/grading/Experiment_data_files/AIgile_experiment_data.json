@@ -1,0 +1,144 @@
+[
+    {
+        "id": "90266a59-2357-4196-8eea-a57fa60a48e6",
+        "timestamp": "2026-02-28T23:30:09.344552",
+        "agent": "System",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "target_dir": "sandbox",
+            "delay_seconds": 10,
+            "max_iterations": 5,
+            "input_prompt": "Scan du dossier sandbox",
+            "output_response": "Démarrage du système"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "cd110a3a-9db1-47f3-967d-a48e11e02829",
+        "timestamp": "2026-02-28T23:30:37.892224",
+        "agent": "System",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "target_dir": "sandbox",
+            "delay_seconds": 10,
+            "max_iterations": 5,
+            "input_prompt": "Scan du dossier sandbox",
+            "output_response": "Démarrage du système"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f998ecd9-d5ac-4c05-9d44-1854772e988a",
+        "timestamp": "2026-02-28T23:30:48.055726",
+        "agent": "Auditor",
+        "model": "gemma-3-27b-it",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_path": "sandbox\\bad_syntax.py",
+            "code_length": 65,
+            "pylint_report": "",
+            "input_prompt": "Fichier analysé : sandbox\\bad_syntax.py\n\n--- CODE SOURCE ---\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\n--- RAPPORT PYLINT ---\n\n\nGénère un plan de refactoring détaillé basé sur :\n1. Les problèmes identifiés par Pylint\n2. Les bugs logiques potentiels que tu détectes dans le code\n3. Les problèmes de sécurité (division par zéro, fichiers non fermés, etc.)\n4. Les violations des bonnes pratiques Python",
+            "output_response": "## 1. Analyse des Problèmes\n- [CRITIQUE] : 1 problème\n- [IMPORTANT] : 0 problèmes\n- [MINEUR] : 0 problèmes\n\n## 2. Plan de Correction\n\n### [CRITIQUE]\n1. Syntaxe incorrecte - Ligne 1 : La définition de la fonction `calculate_sum` est incomplète → Ajouter un deux-points à la fin de la ligne.\n\n### [IMPORTANT]\nN/A\n\n### [MINEUR]\nN/A\n\n## 3. Remarques\nLe code actuel contient une erreur de syntaxe qui empêche son exécution. Corriger cette erreur est la priorité absolue. Ajouter des docstrings serait une bonne pratique pour améliorer la lisibilité."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "cf757d2b-3c15-4625-8c85-735bb8457c31",
+        "timestamp": "2026-02-28T23:30:59.088337",
+        "agent": "FixateurAgent",
+        "model": "gemma-3-27b-it",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_path": "sandbox\\bad_syntax.py",
+            "audit_file": "audit_reports\\bad_syntax_audit.txt",
+            "input_prompt": "\nFICHIER À CORRIGER : bad_syntax.py\n\nCODE BUGUÉ :\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nRAPPORT D'AUDIT :\n## 1. Analyse des Problèmes\n- [CRITIQUE] : 1 problème\n- [IMPORTANT] : 0 problèmes\n- [MINEUR] : 0 problèmes\n\n## 2. Plan de Correction\n\n### [CRITIQUE]\n1. Syntaxe incorrecte - Ligne 1 : La définition de la fonction `calculate_sum` est incomplète → Ajouter un deux-points à la fin de la ligne.\n\n### [IMPORTANT]\nN/A\n\n### [MINEUR]\nN/A\n\n## 3. Remarques\nLe co...",
+            "output_response": "Code corrigé avec succès (41 caractères)",
+            "code_length_before": 65,
+            "code_length_after": 41
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "12192064-61a9-4aa7-873a-3d1c105f9310",
+        "timestamp": "2026-02-28T23:31:22.445483",
+        "agent": "Auditor",
+        "model": "gemma-3-27b-it",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_path": "sandbox\\logic_bug.py",
+            "code_length": 106,
+            "pylint_report": "",
+            "input_prompt": "Fichier analysé : sandbox\\logic_bug.py\n\n--- CODE SOURCE ---\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\n--- RAPPORT PYLINT ---\n\n\nGénère un plan de refactoring détaillé basé sur :\n1. Les problèmes identifiés par Pylint\n2. Les bugs logiques potentiels que tu détectes dans le code\n3. Les problèmes de sécurité (division par zéro, fichiers non fermés, etc.)\n4. Les violations des bonnes pratiques Python",
+            "output_response": "## 1. Analyse des Problèmes\n- [CRITIQUE] : 1 problème\n- [IMPORTANT] : 0 problèmes\n- [MINEUR] : 0 problèmes\n\n## 2. Plan de Correction\n\n### [CRITIQUE]\n1. Boucle infinie - Ligne 3 : `n` est incrémenté au lieu d'être décrémenté, causant une boucle infinie. → Modifier `n += 1` en `n -= 1`\n\n### [IMPORTANT]\nN/A\n\n### [MINEUR]\nN/A\n\n## 3. Remarques\nLe code actuel contient une boucle infinie due à une erreur logique dans l'incrémentation de `n`. Corriger cette erreur est essentiel pour le bon fonctionnement du programme. Ajouter une docstring à la fonction serait une bonne pratique."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "63db9071-0a83-4e73-9a76-a4d976e01dac",
+        "timestamp": "2026-02-28T23:31:26.391489",
+        "agent": "FixateurAgent",
+        "model": "gemma-3-27b-it",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_path": "sandbox\\logic_bug.py",
+            "audit_file": "audit_reports\\logic_bug_audit.txt",
+            "input_prompt": "\nFICHIER À CORRIGER : logic_bug.py\n\nCODE BUGUÉ :\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nRAPPORT D'AUDIT :\n## 1. Analyse des Problèmes\n- [CRITIQUE] : 1 problème\n- [IMPORTANT] : 0 problèmes\n- [MINEUR] : 0 problèmes\n\n## 2. Plan de Correction\n\n### [CRITIQUE]\n1. Boucle infinie - Ligne 3 : `n` est incrémenté au lieu d'être décrémenté, causant une boucle infinie. → Modifier `n += 1` en `n -= 1`\n\n### [IMPORTANT]\nN/A\n\n### ...",
+            "output_response": "Code corrigé avec succès (67 caractères)",
+            "code_length_before": 106,
+            "code_length_after": 67
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "dcbc9795-5547-4aed-a801-14902dfed1f4",
+        "timestamp": "2026-02-28T23:32:03.115242",
+        "agent": "Auditor",
+        "model": "gemma-3-27b-it",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_path": "sandbox\\messy_code.py",
+            "code_length": 148,
+            "pylint_report": "",
+            "input_prompt": "Fichier analysé : sandbox\\messy_code.py\n\n--- CODE SOURCE ---\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\n--- RAPPORT PYLINT ---\n\n\nGénère un plan de refactoring détaillé basé sur :\n1. Les problèmes identifiés par Pylint\n2. Les bugs logiques potentiels que tu détectes dans le code\n3. Les problèmes de sécurité (division par zéro, fichiers non fermés, etc.)\n4. Les violations des bonnes pratiques Python",
+            "output_response": "## 1. Analyse des Problèmes\n- [CRITIQUE] : 0 problèmes\n- [IMPORTANT] : 2 problèmes\n- [MINEUR] : 3 problèmes\n\n## 2. Plan de Correction\n\n### [CRITIQUE]\nAucun problème critique détecté.\n\n### [IMPORTANT]\n1. Nom de variable - Ligne 1 : `x` est un nom peu descriptif → Renommer en un nom plus explicite (ex: `threshold`).\n2. Logique inutile - Ligne 3 : Les `if` imbriqués peuvent être simplifiés → Utiliser `return z > 0 and z < 100`.\n\n### [MINEUR]\n1. Docstring manquante - Ligne 3 : Absence de documentation pour la fonction `f` → Ajouter une docstring expliquant le rôle et les paramètres de la fonction.\n2. Style PEP8 - Ligne 3 : Espace manquant après le `:` → Ajouter un espace après le deux-points.\n3. Nom de paramètre - Ligne 3 : `z` est un nom peu descriptif → Renommer en un nom plus explicite (ex: `value`).\n\n## 3. Remarques\nLe code est fonctionnellement correct mais manque de clarté et de maintenabilité. Simplifier la logique et améliorer la documentation rendront le code plus facile à comprendre et à modifier. Privilégier des noms de variables explicites."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e5668a3e-8a97-4f5b-b8e1-636b70268b46",
+        "timestamp": "2026-02-28T23:32:09.457302",
+        "agent": "FixateurAgent",
+        "model": "gemma-3-27b-it",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_path": "sandbox\\messy_code.py",
+            "audit_file": "audit_reports\\messy_code_audit.txt",
+            "input_prompt": "\nFICHIER À CORRIGER : messy_code.py\n\nCODE BUGUÉ :\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nRAPPORT D'AUDIT :\n## 1. Analyse des Problèmes\n- [CRITIQUE] : 0 problèmes\n- [IMPORTANT] : 2 problèmes\n- [MINEUR] : 3 problèmes\n\n## 2. Plan de Correction\n\n### [CRITIQUE]\nAucun problème critique détecté.\n\n### [IMPORTANT]\n1. Nom de variable - Ligne 1 : `x` est un nom peu descriptif → Renom...",
+            "output_response": "Code corrigé avec succès (323 caractères)",
+            "code_length_before": 148,
+            "code_length_after": 323
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "46b51589-bc98-477d-99a1-b035b577b28d",
+        "timestamp": "2026-02-28T23:32:24.260903",
+        "agent": "System",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "files_analyzed": 3,
+            "files_validated": 3,
+            "files_failed": 0,
+            "files_first_try": 3,
+            "files_needed_selfhealing": 0,
+            "total_iterations": 3,
+            "avg_iterations": 1.0,
+            "input_prompt": "Analyse complète de 3 fichiers",
+            "output_response": "Mission terminée"
+        },
+        "status": "SUCCESS"
+    }
+]

@@ -1,0 +1,1016 @@
+[
+  {
+    "timestamp": "2026-02-28T23:29:34.949441",
+    "agent_name": "Auditor_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring détaillé.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE SOURCE:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nRAPPORT PYLINT (Score: 0.0/10):\n\n\nINSTRUCTIONS SPÉCIALES:\n- Regarde les noms de fonctions/variables pour deviner l'intention\n- Si \"calculate_average\" retourne une somme, c'est un BUG LOGIQUE\n- Si \"is_adult\" n'a pas de seuil clair, propose 18 ans ...",
+      "output_response": "Analyse du fichier `logic_bug.py` :\n\n```json\n{\n  \"file_path\": \"./sandbox/hidden_dataset/logic_bug.py\",\n  \"quality_score\": 0.0,\n  \"issues\": [\n    {\n      \"severity\": \"CRITIQUE\",\n      \"line\": 4,\n      \"type\": \"logic_error\",\n      \"description\": \"La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\",\n      \"solution\": \"Remplacer la ligne 'n += 1' par 'n -= 1' pour diminuer la valeur de n à chaque itération.\",\n      \"expected_behavior\": \"La fonc...",
+      "pylint_score": 0.0,
+      "issues_count": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:37.505799",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "fix",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 1,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence de comptage à rebours.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport unittest\n\nclass TestCountDownFunction(unittest.TestCase):\n\n    def test_count_down(self):\n        # Redirection de la sortie standard pour capturer les impressions\n        import i...",
+      "original_code_length": 106,
+      "fixed_code_length": 873,
+      "had_test_errors": false
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:39.687781",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence de comptage à rebours.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport unittest\n\nclass TestCountDownFunction(unittest.TestC...",
+      "output_response": "```python\nimport pytest\nfrom io import StringIO\nimport sys\nfrom unittest.mock import patch\nfrom logic_bug import count_down\n\ndef test_count_down_normal_case(capsys):\n    \"\"\"Teste la fonction count_down avec un cas normal\"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_limit_case(capsys):\n    \"\"\"Teste la fonction count_down avec une limite (n = 1)\"\"\"\n    count_down(1)\n    captured = capsys.readouterr()\n    assert captured.out == ...",
+      "source_code_length": 873,
+      "test_code_length": 2033
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:41.947888",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 2,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante de n à 1.\n\n    Args:\n        n (int): Le nombre de départ de la séquence.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys...",
+      "original_code_length": 106,
+      "fixed_code_length": 768,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:45.077618",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante de n à 1.\n\n    Args:\n        n (int): Le nombre de départ de la séquence.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsy...",
+      "output_response": "```python\nimport pytest\nimport io\nimport sys\n\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante de n à 1.\n\n    Args:\n        n (int): Le nombre de départ de la séquence.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\n\ndef test_count_down(capsys):\n    \"\"\"Test de la fonction count_down avec un nombre positif\"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    ass...",
+      "source_code_length": 768,
+      "test_code_length": 2678
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:47.323861",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 3,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    ...",
+      "original_code_length": 106,
+      "fixed_code_length": 761,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:50.485697",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n   ...",
+      "output_response": "```python\nimport pytest\nimport io\nimport sys\n\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  \n\ndef test_count_down(capsys):\n    \"\"\"Test de la fonction count_down avec une valeur positive\"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n...",
+      "source_code_length": 761,
+      "test_code_length": 2980
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:52.227783",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 4,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Cette fonction affiche une série de nombres décroissants à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    count_down(0)\n    capt...",
+      "original_code_length": 106,
+      "fixed_code_length": 843,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:54.728920",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Cette fonction affiche une série de nombres décroissants à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\n\ndef test_count_down(capsys):\n    count_down(3)\n    cap...",
+      "output_response": "```python\nimport pytest\nfrom io import StringIO\nimport sys\n\ndef count_down(n):\n    \"\"\"\n    Cette fonction affiche une série de nombres décroissants à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"Test du décompte normal\"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n...",
+      "source_code_length": 843,
+      "test_code_length": 2072
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:56.895978",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 5,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Décompte à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    count_down(0)\n    captured...",
+      "original_code_length": 106,
+      "fixed_code_length": 735,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:29:59.921643",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Décompte à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    capture...",
+      "output_response": "```python\nimport pytest\nimport io\nimport sys\nfrom logic_bug import count_down\n\ndef test_count_down(capsys):\n    \"\"\"Décompte à partir de 3 jusqu'à 1\"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    \"\"\"Décompte à partir de 0\"\"\"\n    count_down(0)\n    captured = capsys.readouterr()\n    assert captured.out == \"\"\n\ndef test_count_down_negative(capsys):\n    \"\"\"Décompte à partir d'un nombre négatif\"\"\"\n    count_down(-1)\n...",
+      "source_code_length": 735,
+      "test_code_length": 1770
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:02.157343",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 6,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une compteur descendant de n à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la compteur.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test unitaire pour la fonction count_down.\n\n    Args:\n        capsys (pytest.fixture): Fixture pour capturer les sorties stdout.\n\n    Returns:\n        None\n    \"\"\"\n    count_down(3)\n ...",
+      "original_code_length": 106,
+      "fixed_code_length": 1176,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:06.674044",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une compteur descendant de n à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la compteur.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test unitaire pour la fonction count_down.\n\n    Args:\n ...",
+      "output_response": "```python\nimport pytest\n\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une compteur descendant de n à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la compteur.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test unitaire pour la fonction count_down.\n\n    Args:\n        capsys (pytest.fixture): Fixture pour capturer les sorties stdout.\n\n    Returns:\n        None\n    \"\"\"\n    ...",
+      "source_code_length": 1176,
+      "test_code_length": 2637
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:08.622648",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 7,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Affiche les nombres de n à 1 en décrémentant.\n\n    Args:\n        n (int): Le nombre de départ.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    count_down(0)\n    captured = capsys.readouterr()\n    a...",
+      "original_code_length": 106,
+      "fixed_code_length": 637,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:11.420760",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Affiche les nombres de n à 1 en décrémentant.\n\n    Args:\n        n (int): Le nombre de départ.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    ...",
+      "output_response": "```python\nimport pytest\nimport io\nimport sys\n\ndef count_down(n):\n    \"\"\"\n    Affiche les nombres de n à 1 en décrémentant.\n\n    Args:\n        n (int): Le nombre de départ.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test de la fonction count_down avec une valeur positive.\n    \"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_...",
+      "source_code_length": 637,
+      "test_code_length": 2134
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:13.360239",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 8,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence de décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    count_dow...",
+      "original_code_length": 106,
+      "fixed_code_length": 682,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:16.406370",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence de décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\n\ndef test_count_down(capsys):\n    count_do...",
+      "output_response": "```python\nimport pytest\n\ndef count_down(n):\n    \"\"\"\n    Fonction qui affiche une séquence de nombres décroissante à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la séquence de décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"Test de la fonction count_down avec une valeur positive\"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.o...",
+      "source_code_length": 682,
+      "test_code_length": 2059
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:18.635896",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 9,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Affiche une countdown à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la countdown.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"\n\ndef test_count_down_zero(capsys):\n    count_down(0)\n    captured = capsys...",
+      "original_code_length": 106,
+      "fixed_code_length": 726,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:21.346876",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Affiche une countdown à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la countdown.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\nimport pytest\nimport io\nimport sys\n\ndef test_count_down(capsys):\n    count_down(3)\n    captured = capsy...",
+      "output_response": "```python\nimport pytest\nimport io\nimport sys\n\ndef count_down(n):\n    \"\"\"\n    Affiche une countdown à partir de n jusqu'à 1.\n\n    Args:\n        n (int): Le nombre de départ pour la countdown.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug logique\n\ndef test_count_down(capsys):\n    \"\"\"\n    Teste la fonction count_down avec une valeur positive.\n    \"\"\"\n    count_down(3)\n    captured = capsys.readouterr()\n    assert captured.out == \"3\\n2\\n1\\n\"...",
+      "source_code_length": 726,
+      "test_code_length": 2300
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:23.256062",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "iteration": 10,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE ORIGINAL:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [CRITIQUE] Ligne 4: La fonction count_down augmente la valeur de n au lieu de la diminuer, ce qui entraîne une boucle infinie.\n\nPLAN DE REFACTORING:\n1. Corriger le bug logique dans la fonction count_down en remplaçant 'n += 1' par 'n -= ...",
+      "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Cette fonction affiche les nombres de n à 1 en décrémentant.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test unitaire pour la fonction count_down.\n\n    Vérifie que la fonction affiche les nombres de n à 1.\n    \"\"\"\n    count_down(3)\n    captured = capsys.read...",
+      "original_code_length": 106,
+      "fixed_code_length": 1070,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:24.766928",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\logic_bug.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_logic_bug.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"\n    Cette fonction affiche les nombres de n à 1 en décrémentant.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test unitaire pour la fonc...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 1070,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:27.839323",
+    "agent_name": "Auditor_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "./sandbox/hidden_dataset\\logic_bug.py",
+      "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring détaillé.\n\nFICHIER: ./sandbox/hidden_dataset\\logic_bug.py\n\nCODE SOURCE:\n```python\ndef count_down(n):\n    \"\"\"\n    Cette fonction affiche les nombres de n à 1 en décrémentant.\n\n    Args:\n        n (int): Le nombre de départ pour le décompte.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1  # Correction du bug : n diminue à chaque itération\n\ndef test_count_down(capsys):\n    \"\"\"\n    Test unitaire pour la ...",
+      "output_response": "Analyse du code Python :\n\nLe code fourni contient une fonction `count_down` qui affiche les nombres de `n` à 1 en décrémentant, ainsi que des tests unitaires pour cette fonction. \n\nVoici le rapport d'analyse au format JSON demandé :\n\n```json\n{\n  \"file_path\": \"./sandbox/hidden_dataset/logic_bug.py\",\n  \"quality_score\": 8.0,\n  \"issues\": [\n    {\n      \"severity\": \"MINEUR\",\n      \"line\": 1,\n      \"type\": \"documentation\",\n      \"description\": \"La documentation de la fonction count_down pourrait être p...",
+      "pylint_score": 0.0,
+      "issues_count": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:29.486024",
+    "agent_name": "Auditor_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring détaillé.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE SOURCE:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nRAPPORT PYLINT (Score: 0.0/10):\n\n\nINSTRUCTIONS SPÉCIALES:\n- Regarde les noms de fonctions/variables pour deviner l'intention\n- Si \"calculate_average\" retourne une somme, c'est un BUG LOGIQUE\n- Si \"is_adult\" n'a pas de seuil clair, propose 18 ans (standard)\n- Détecte les bugs de logique...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "pylint_score": 0.0,
+      "issues_count": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:31.885090",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "fix",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 1,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\nRetourne le code Python corrigé complet (sans markdown, juste le code)....",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int ou float): Le premier nombre.\n        b (int ou float): Le deuxième nombre.\n\n    Returns:\n        int ou float: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b...",
+      "original_code_length": 65,
+      "fixed_code_length": 585,
+      "had_test_errors": false
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:33.644056",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int ou float): Le premier nombre.\n        b (int ou float): Le deuxième nombre.\n\n    Returns:\n        int ou float: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 585,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:36.009783",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 2,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme de a et b.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError as e:\n      ...",
+      "original_code_length": 65,
+      "fixed_code_length": 822,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:39.037803",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme de a et b.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n...",
+      "output_response": "```python\nimport pytest\n\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme de a et b.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeErr...",
+      "source_code_length": 822,
+      "test_code_length": 1925
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:40.677182",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 3,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "original_code_length": 65,
+      "fixed_code_length": 321,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:42.055690",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\n{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}\n```\n\nEXIGENCES CRITIQUES:\n- Utilise pyt...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 321,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:44.572492",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 4,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError as e:...",
+      "original_code_length": 65,
+      "fixed_code_length": 829,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:46.022706",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, fl...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 829,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:48.201972",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 5,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError as e:...",
+      "original_code_length": 65,
+      "fixed_code_length": 747,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:49.250366",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, fl...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 747,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:51.589582",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 6,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError as e:...",
+      "original_code_length": 65,
+      "fixed_code_length": 865,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:54.902608",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, fl...",
+      "output_response": "```python\nimport pytest\n\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except ...",
+      "source_code_length": 865,
+      "test_code_length": 1951
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:56.668247",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 7,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "original_code_length": 65,
+      "fixed_code_length": 321,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:30:58.312849",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\n{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}\n```\n\nEXIGENCES CRITIQUES:\n- Utilise pyt...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 321,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:00.208269",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 8,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b ne sont pas des nombres.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError a...",
+      "original_code_length": 65,
+      "fixed_code_length": 545,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:03.138196",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b ne sont pas des nombres.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int...",
+      "output_response": "```python\nimport pytest\nfrom sandbox.hidden_dataset.bad_syntax import calculate_sum\n\ndef test_calculate_sum_deux_nombres_entiers():\n    \"\"\"La somme de deux nombres entiers doit être correcte\"\"\"\n    assert calculate_sum(5, 7) == 12\n\ndef test_calculate_sum_deux_nombres_flottants():\n    \"\"\"La somme de deux nombres flottants doit être correcte\"\"\"\n    assert calculate_sum(5.5, 7.7) == 13.2\n\ndef test_calculate_sum_mélange_entier_flottant():\n    \"\"\"La somme d'un entier et d'un flottant doit être correc...",
+      "source_code_length": 545,
+      "test_code_length": 1614
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:06.115948",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 9,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme de a et b.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError as e:\n      ...",
+      "original_code_length": 65,
+      "fixed_code_length": 845,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:07.755972",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme de a et b.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 845,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:09.976312",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "iteration": 10,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE ORIGINAL:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip install pytest\n\nIMPORTANT: Le code doit passer ces tests !\nAnalyse les assertions pour co...",
+      "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n            raise TypeError(\"Les deux arguments doivent être des nombres\")\n        return a + b\n    except TypeError as e:...",
+      "original_code_length": 65,
+      "fixed_code_length": 541,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:12.048760",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_bad_syntax.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int, fl...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 541,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:16.386280",
+    "agent_name": "Auditor_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "./sandbox/hidden_dataset\\bad_syntax.py",
+      "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring détaillé.\n\nFICHIER: ./sandbox/hidden_dataset\\bad_syntax.py\n\nCODE SOURCE:\n```python\ndef calculate_sum(a, b):\n    \"\"\"\n    Calcule la somme de deux nombres.\n\n    Args:\n        a (int): Le premier nombre.\n        b (int): Le deuxième nombre.\n\n    Returns:\n        int: La somme des deux nombres.\n\n    Raises:\n        TypeError: Si a ou b n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(a, (int, float)) or not isinstance(b, (int...",
+      "output_response": "Analyse du fichier `bad_syntax.py` :\n\n```json\n{\n  \"file_path\": \"./sandbox/hidden_dataset/bad_syntax.py\",\n  \"quality_score\": 6.0,\n  \"issues\": [\n    {\n      \"severity\": \"MINEUR\",\n      \"line\": 1,\n      \"type\": \"documentation\",\n      \"description\": \"La documentation de la fonction calculate_sum est incomplète et ne décrit pas les exceptions possibles.\",\n      \"solution\": \"Ajouter une description des exceptions possibles dans la documentation.\",\n      \"expected_behavior\": \"La fonction devrait calcul...",
+      "pylint_score": 0.0,
+      "issues_count": 4
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:18.215985",
+    "agent_name": "Auditor_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "./sandbox/hidden_dataset\\messy_code.py",
+      "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring détaillé.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE SOURCE:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nRAPPORT PYLINT (Score: 0.0/10):\n\n\nINSTRUCTIONS SPÉCIALES:\n- Regarde les noms de fonctions/variables pour deviner l'intention\n- Si \"calculate_average\" retourne une somme, c'est un BUG LOGIQUE\n- Si \"is_adu...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "pylint_score": 0.0,
+      "issues_count": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:20.419082",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "fix",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 1,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\nRetourne le code Python corrigé complet (sans markdown, juste le code)....",
+      "output_response": "```python\nx = 10\n\ndef verifier_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 et 100.\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est compris entre 0 et 100, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'est pas un entier.\n    \"\"\"\n    if not isinstance(z, int):\n        raise TypeError(\"La valeur z doit être un entier.\")\n    try:\n        if z...",
+      "original_code_length": 148,
+      "fixed_code_length": 642,
+      "had_test_errors": false
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:23.850170",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\nx = 10\n\ndef verifier_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 et 100.\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est compris entre 0 et 100, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'est pas un...",
+      "output_response": "```python\nimport pytest\nfrom messy_code import verifier_interval\n\ndef test_verifier_interval_valeur_dans_interval():\n    \"\"\"Vérifie que la fonction retourne True pour une valeur dans l'intervalle.\"\"\"\n    assert verifier_interval(50) == True\n\ndef test_verifier_interval_valeur_en_dehors_interval():\n    \"\"\"Vérifie que la fonction retourne False pour une valeur en dehors de l'intervalle.\"\"\"\n    assert verifier_interval(150) == False\n\ndef test_verifier_interval_valeur_egale_a_zero():\n    \"\"\"Vérifie q...",
+      "source_code_length": 642,
+      "test_code_length": 2064
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:25.276000",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 2,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "original_code_length": 148,
+      "fixed_code_length": 321,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:26.485449",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\n{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}\n```\n\nEXIGENCES CRITIQUES:\n- Utilise pyt...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 321,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:28.405900",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 3,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "```python\nx = 10\n\ndef est_dans_intervalle(z: int) -> bool:\n    \"\"\"\n    Vérifie si un nombre est dans l'intervalle (0, 100).\n\n    Args:\n        z (int): Le nombre à vérifier.\n\n    Returns:\n        bool: True si le nombre est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé comme diviseur et vaut zéro.\n        TypeError: Si z n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(z, (int, float)):\n            raise TypeError(\"z doit être un nombre\")...",
+      "original_code_length": 148,
+      "fixed_code_length": 739,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:29.930923",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\nx = 10\n\ndef est_dans_intervalle(z: int) -> bool:\n    \"\"\"\n    Vérifie si un nombre est dans l'intervalle (0, 100).\n\n    Args:\n        z (int): Le nombre à vérifier.\n\n    Returns:\n        bool: True si le nombre est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé comme diviseur et vaut zéro.\n        TypeError: Si z n'est...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 739,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:32.218120",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 4,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "```python\nx = 10\n\ndef est_dans_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si un nombre est dans l'intervalle (0, 100).\n\n    Args:\n        z (int): Le nombre à vérifier.\n\n    Returns:\n        bool: True si le nombre est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé comme diviseur et vaut 0.\n        TypeError: Si z n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(z, (int, float)):\n            raise TypeError(\"z doit être un nombre\")\n    ...",
+      "original_code_length": 148,
+      "fixed_code_length": 734,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:33.948990",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\nx = 10\n\ndef est_dans_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si un nombre est dans l'intervalle (0, 100).\n\n    Args:\n        z (int): Le nombre à vérifier.\n\n    Returns:\n        bool: True si le nombre est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé comme diviseur et vaut 0.\n        TypeError: Si z n'est pas ...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 734,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:36.112834",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 5,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "```python\nx = 10\n\ndef est_dans_intervalle(z: int) -> bool:\n    \"\"\"\n    Vérifie si un nombre est dans l'intervalle (0, 100).\n\n    Args:\n        z (int): Le nombre à vérifier.\n\n    Returns:\n        bool: True si le nombre est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'est pas un nombre.\n    \"\"\"\n    try:\n        if not isinstance(z, (int, float)):\n            raise TypeError(\"z doit être un nombre\")\n...",
+      "original_code_length": 148,
+      "fixed_code_length": 738,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:38.614427",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\nx = 10\n\ndef est_dans_intervalle(z: int) -> bool:\n    \"\"\"\n    Vérifie si un nombre est dans l'intervalle (0, 100).\n\n    Args:\n        z (int): Le nombre à vérifier.\n\n    Returns:\n        bool: True si le nombre est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'est ...",
+      "output_response": "```python\nimport pytest\nfrom messy_code import est_dans_intervalle\n\ndef test_est_dans_intervalle_nombre_dans_intervalle():\n    \"\"\"Un nombre entre 0 et 100 doit retourner True\"\"\"\n    assert est_dans_intervalle(50) == True\n\ndef test_est_dans_intervalle_nombre_en_dehors_intervalle():\n    \"\"\"Un nombre en dehors de l'intervalle (0, 100) doit retourner False\"\"\"\n    assert est_dans_intervalle(150) == False\n\ndef test_est_dans_intervalle_nombre_limite_inferieure():\n    \"\"\"Le nombre 0 doit retourner False...",
+      "source_code_length": 738,
+      "test_code_length": 1610
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:39.865834",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 6,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "original_code_length": 148,
+      "fixed_code_length": 321,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:41.410022",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\n{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}\n```\n\nEXIGENCES CRITIQUES:\n- Utilise pyt...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 321,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:43.586200",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 7,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "```python\ndef valider_valeur(z: int) -> bool:\n    \"\"\"\n    Valide si la valeur est comprise entre 0 et 100.\n\n    Args:\n        z (int): La valeur à valider.\n\n    Returns:\n        bool: True si la valeur est comprise entre 0 et 100, False sinon.\n    \"\"\"\n    try:\n        if z > 0 and z < 100:\n            return True\n        return False\n    except TypeError:\n        raise ValueError(\"La valeur doit être un entier\")\n\n\ndef main():\n    x = 10\n    print(valider_valeur(50))  # Doit imprimer: True\n    pr...",
+      "original_code_length": 148,
+      "fixed_code_length": 808,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:45.305885",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\ndef valider_valeur(z: int) -> bool:\n    \"\"\"\n    Valide si la valeur est comprise entre 0 et 100.\n\n    Args:\n        z (int): La valeur à valider.\n\n    Returns:\n        bool: True si la valeur est comprise entre 0 et 100, False sinon.\n    \"\"\"\n    try:\n        if z > 0 and z < 100:\n            return True\n        return False\n    except TypeError:\n        raise...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 808,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:47.741787",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 8,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "```python\nx = 10\n\ndef vérifie_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 (exclusif) et 100 (exclusif).\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'est pas un entier.\n    \"\"\"\n    if not isinstance(z, int):\n        raise TypeError(\"La valeur z doit être un entier.\")\n    t...",
+      "original_code_length": 148,
+      "fixed_code_length": 648,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:50.607541",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\nx = 10\n\ndef vérifie_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 (exclusif) et 100 (exclusif).\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: S...",
+      "output_response": "```python\nimport pytest\nfrom messy_code import vérifie_interval\n\ndef test_vérifie_interval_valeur_dans_interval():\n    \"\"\"Vérifie que la fonction retourne True pour une valeur dans l'intervalle.\"\"\"\n    assert vérifie_interval(50) == True\n\ndef test_vérifie_interval_valeur_en_dehors_interval():\n    \"\"\"Vérifie que la fonction retourne False pour une valeur en dehors de l'intervalle.\"\"\"\n    assert vérifie_interval(150) == False\n\ndef test_vérifie_interval_valeurégale_à_zero():\n    \"\"\"Vérifie que la f...",
+      "source_code_length": 648,
+      "test_code_length": 2023
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:51.905692",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 9,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}...",
+      "original_code_length": 148,
+      "fixed_code_length": 321,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:53.228144",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\n{\n  \"quality_score\": 5.0,\n  \"issues\": [\n    {\n      \"severity\": \"MAJEUR\",\n      \"line\": 5,\n      \"type\": \"bug\",\n      \"description\": \"Division par zéro potentielle\",\n      \"solution\": \"Ajouter une vérification\"\n    }\n  ],\n  \"refactoring_plan\": \"1. Ajouter docstring\\n2. Gérer les erreurs\",\n  \"estimated_effort\": \"MOYEN\"\n}\n```\n\nEXIGENCES CRITIQUES:\n- Utilise pyt...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 321,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:55.038200",
+    "agent_name": "Fixer_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "debug",
+    "status": "SUCCESS",
+    "details": {
+      "file_fixed": "./sandbox/hidden_dataset\\messy_code.py",
+      "iteration": 10,
+      "input_prompt": "Corrige ce code Python selon le plan de refactoring.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE ORIGINAL:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nPROBLÈMES IDENTIFIÉS:\n- [MAJEUR] Ligne 5: Division par zéro potentielle\n\nPLAN DE REFACTORING:\n1. Ajouter docstring\n2. Gérer les erreurs\n\n\n ERREURS DE TESTS À CORRIGER:\nPytest non installé. Installez-le avec: pip instal...",
+      "output_response": "```python\nx = 10\n\ndef est_dans_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 et 100 (0 < z < 100).\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'est pas un entier.\n    \"\"\"\n    if not isinstance(z, int):\n        raise TypeError(\"La valeur z doit être un entier.\")\n    try:\n   ...",
+      "original_code_length": 148,
+      "fixed_code_length": 651,
+      "had_test_errors": true
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:31:56.949606",
+    "agent_name": "Judge_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "generation",
+    "status": "SUCCESS",
+    "details": {
+      "file_tested": "./sandbox/hidden_dataset\\messy_code.py",
+      "test_file_created": "./sandbox/hidden_dataset\\unitaire_messy_code.py",
+      "input_prompt": "Génère des tests unitaires complets pour ce code Python.\n\nFICHIER SOURCE: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE À TESTER:\n```python\nx = 10\n\ndef est_dans_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 et 100 (0 < z < 100).\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z n'e...",
+      "output_response": "def test_add():\n    assert add(2, 2) == 4\n\ndef test_divide():\n    with pytest.raises(ValueError):\n        divide(1, 0)...",
+      "source_code_length": 651,
+      "test_code_length": 118
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:32:00.404408",
+    "agent_name": "Auditor_Agent",
+    "model_used": "groq/llama-3.3-70b-versatile",
+    "action": "analysis",
+    "status": "SUCCESS",
+    "details": {
+      "file_analyzed": "./sandbox/hidden_dataset\\messy_code.py",
+      "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring détaillé.\n\nFICHIER: ./sandbox/hidden_dataset\\messy_code.py\n\nCODE SOURCE:\n```python\nx = 10\n\ndef est_dans_interval(z: int) -> bool:\n    \"\"\"\n    Vérifie si la valeur z est comprise entre 0 et 100 (0 < z < 100).\n\n    Args:\n        z (int): La valeur à vérifier.\n\n    Returns:\n        bool: True si z est dans l'intervalle, False sinon.\n\n    Raises:\n        ZeroDivisionError: Si z est utilisé dans une division par zéro.\n        TypeError: Si z...",
+      "output_response": "Analyse du code Python :\n\n```json\n{\n  \"file_path\": \"./sandbox/hidden_dataset/messy_code.py\",\n  \"quality_score\": 2.0,\n  \"issues\": [\n    {\n      \"severity\": \"MINEUR\",\n      \"line\": 1,\n      \"type\": \"style\",\n      \"description\": \"La variable x n'est pas utilisée dans le code fourni.\",\n      \"solution\": \"Supprimer la variable x si elle n'est pas utilisée.\",\n      \"expected_behavior\": \"La variable x devrait être utilisée ou supprimée pour éviter la confusion.\"\n    },\n    {\n      \"severity\": \"MINEUR\",...",
+      "pylint_score": 0.0,
+      "issues_count": 5
+    }
+  }
+]

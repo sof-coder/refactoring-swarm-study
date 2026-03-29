@@ -1,0 +1,412 @@
+[
+    {
+        "id": "872ccf4b-4df8-4e08-a2de-18910f531dc0",
+        "timestamp": "2026-02-28T23:31:20.381270",
+        "agent": "System",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Démarrage du système Refactoring Swarm",
+            "output_response": "Configuration validée pour sandbox\\hidden_dataset",
+            "target_directory": "sandbox\\hidden_dataset",
+            "max_iterations": 3
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "44ecd731-8bad-4ea9-94e4-ae5cfad3965f",
+        "timestamp": "2026-02-28T23:31:29.329811",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_analyzed": "sandbox\\hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Analyse ce fichier Python et identifie UNIQUEMENT les 3-5 problèmes les PLUS CRITIQUES.\n\n**Fichier** : bad_syntax.py\n\n**Code** :\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\n**Score Pylint** : 0.0/10\n\nFournis un plan JSON COMPACT (max 10 lignes) :\n{\n    \"file\": \"CHEMIN_COMPLET_DU_FICHIER\",\n    \"issues\": [\n        {\"type\": \"bug\", \"line\": 1, \"description\": \"Problème X\", \"priority\": \"HIGH\", \"suggestion\": \"Correction Y\"},\n        {\"type\": \"pep8\", \"line\": 2, \"descr",
+            "output_response": "```json\n{\n  \"file\": \"bad_syntax.py\",\n  \"issues\": [\n    {\n      \"type\": \"bug\",\n      \"line\": 1,\n      \"description\": \"Missing colon after function definition\",\n      \"priority\": \"HIGH\",\n      \"suggestion\": \"Add a colon after 'b)' in 'def calculate_sum(a, b):'\"\n    },\n    {\n      \"type\": \"documentation\",\n      \"line\": 1,\n      \"description\": \"Function 'calculate_sum' lacks docstring\",\n      \"priority\": \"MEDIUM\",\n      \"suggestion\": \"Add a docstring explaining the function adds two numbers\"\n    },\n",
+            "pylint_score": 0.0,
+            "code_length": 65
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "db203559-a819-4041-a900-65df5f7904b9",
+        "timestamp": "2026-02-28T23:31:43.249649",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_analyzed": "sandbox\\hidden_dataset\\logic_bug.py",
+            "input_prompt": "Analyse ce fichier Python et identifie UNIQUEMENT les 3-5 problèmes les PLUS CRITIQUES.\n\n**Fichier** : logic_bug.py\n\n**Code** :\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\n**Score Pylint** : 2.5/10\n\nFournis un plan JSON COMPACT (max 10 lignes) :\n{\n    \"file\": \"CHEMIN_COMPLET_DU_FICHIER\",\n    \"issues\": [\n        {\"type\": \"bug\", \"line\": 1, \"description\": \"Problème X\", \"priority\": \"HIGH\", \"suggestion\": \"Correction Y\"},\n  ",
+            "output_response": "```json\n{\n  \"file\": \"/app/logic_bug.py\",\n  \"issues\": [\n    {\n      \"type\": \"bug\",\n      \"line\": 4,\n      \"description\": \"Infinite loop due to incorrect increment.\",\n      \"priority\": \"HIGH\",\n      \"suggestion\": \"Change 'n += 1' to 'n -= 1'.\"\n    },\n    {\n      \"type\": \"documentation\",\n      \"line\": 1,\n      \"description\": \"Function 'count_down' lacks a docstring.\",\n      \"priority\": \"MEDIUM\",\n      \"suggestion\": \"Add docstring explaining function counts down from 'n'.\"\n    },\n    {\n      \"type\":",
+            "pylint_score": 2.5,
+            "code_length": 106
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "d00b35d3-20c3-4f1b-ac87-324c84d9d273",
+        "timestamp": "2026-02-28T23:31:54.059303",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_analyzed": "sandbox\\hidden_dataset\\messy_code.py",
+            "input_prompt": "Analyse ce fichier Python et identifie UNIQUEMENT les 3-5 problèmes les PLUS CRITIQUES.\n\n**Fichier** : messy_code.py\n\n**Code** :\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\n**Score Pylint** : 3.33/10\n\nFournis un plan JSON COMPACT (max 10 lignes) :\n{\n    \"file\": \"CHEMIN_COMPLET_DU_FICHIER\",\n    \"issues\": [\n        {\"type\": \"bug\", \"line\": 1, \"description\": \"Problème X\", \"priority",
+            "output_response": "```json\n{\n  \"file\": \"messy_code.py\",\n  \"issues\": [\n    {\n      \"type\": \"quality\",\n      \"line\": 1,\n      \"description\": \"Global variable 'x' is unused\",\n      \"priority\": \"MEDIUM\",\n      \"suggestion\": \"Remove unused global variable 'x'\"\n    },\n    {\n      \"type\": \"documentation\",\n      \"line\": 3,\n      \"description\": \"Function 'f' lacks a docstring\",\n      \"priority\": \"MEDIUM\",\n      \"suggestion\": \"Add docstring: 'Checks if input z is between 0 and 100 (exclusive).'\"\n    },\n    {\n      \"type\": \"",
+            "pylint_score": 3.33,
+            "code_length": 148
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "94020146-8bb9-4c14-bee9-e8fb55a356b1",
+        "timestamp": "2026-02-28T23:32:17.292984",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_GEN",
+        "details": {
+            "input_prompt": "Generate intelligent unit tests for this Python file.\n\n**CRITICAL REQUIREMENT**: Tests MUST import the actual module and test the REAL functions!\n\nFile: bad_syntax.py\n\nCode to analyze:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nDetected functions: calculate_sum\nDetected classes: None\n\n╔═══════════════════════════════════════════════════════════╗\n║          CRITICAL TESTING REQUIREMENTS                     ║\n╚══════════════════════════════════════════════════",
+            "output_response": "import pytest\nimport importlib.util\nimport sys\nimport os\n\n# The provided code 'bad_syntax.py' contains a SyntaxError at the module level\n# (a missing colon in the function definition).\n# This means the module cannot be imported directly using 'import bad_syntax'\n# at the top level of a test file, as it would cause a SyntaxError during test collection.\n#\n# To test the *actual behavior* of this file, which is to raise a SyntaxError\n# upon parsing, we must dynamically attempt to load the module wit",
+            "file_tested": "sandbox\\hidden_dataset\\bad_syntax.py",
+            "test_file_generated": "sandbox\\hidden_dataset\\tests\\test_bad_syntax.py",
+            "functions_found": [
+                "calculate_sum"
+            ],
+            "classes_found": [],
+            "test_code_length": 2777
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "bca2f970-0f07-42b5-a0a1-1121256ae036",
+        "timestamp": "2026-02-28T23:32:33.629511",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_GEN",
+        "details": {
+            "input_prompt": "Generate intelligent unit tests for this Python file.\n\n**CRITICAL REQUIREMENT**: Tests MUST import the actual module and test the REAL functions!\n\nFile: logic_bug.py\n\nCode to analyze:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nDetected functions: count_down\nDetected classes: None\n\n╔═══════════════════════════════════════════════════════════╗\n║          CRITICAL TESTING REQUIREMENTS                     ║\n╚═════════════",
+            "output_response": "import pytest\nimport logic_bug\nfrom unittest.mock import patch\n\ndef test_count_down_zero_n_no_output_returns_none(capsys):\n    \"\"\"\n    Verifies that if n is 0, the loop condition (n > 0) is false,\n    nothing is printed, and the function implicitly returns None.\n    \"\"\"\n    result = logic_bug.count_down(0)\n    captured = capsys.readouterr()\n    assert captured.out == \"\"\n    assert captured.err == \"\"\n    assert result is None\n\ndef test_count_down_negative_n_no_output_returns_none(capsys):\n    \"\"\"",
+            "file_tested": "sandbox\\hidden_dataset\\logic_bug.py",
+            "test_file_generated": "sandbox\\hidden_dataset\\tests\\test_logic_bug.py",
+            "functions_found": [
+                "count_down"
+            ],
+            "classes_found": [],
+            "test_code_length": 3740
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a56737ec-6585-492c-a165-655004d0bfbb",
+        "timestamp": "2026-02-28T23:32:40.865220",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_GEN",
+        "details": {
+            "input_prompt": "Generate intelligent unit tests for this Python file.\n\n**CRITICAL REQUIREMENT**: Tests MUST import the actual module and test the REAL functions!\n\nFile: messy_code.py\n\nCode to analyze:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nDetected functions: f\nDetected classes: None\n\n╔═══════════════════════════════════════════════════════════╗\n║          CRITICAL TESTING REQUIREMENTS   ",
+            "output_response": "import pytest\nimport messy_code\n\ndef test_f_returns_true_for_value_between_0_and_100_exclusive():\n    # Q1: What does the function ACTUALLY return? True\n    # Q2: What exceptions does it ACTUALLY raise? None\n    # Q3: What edge cases does it ACTUALLY handle? z > 0 and z < 100\n    assert messy_code.f(1) is True\n    assert messy_code.f(50) is True\n    assert messy_code.f(99) is True\n\ndef test_f_returns_false_for_value_equal_to_0():\n    # Q1: What does the function ACTUALLY return? False\n    # Q2: ",
+            "file_tested": "sandbox\\hidden_dataset\\messy_code.py",
+            "test_file_generated": "sandbox\\hidden_dataset\\tests\\test_messy_code.py",
+            "functions_found": [
+                "f"
+            ],
+            "classes_found": [],
+            "test_code_length": 3184
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "4144147d-bcf6-4f61-bae3-d0ead3c9a06d",
+        "timestamp": "2026-02-28T23:32:43.145398",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\bad_syntax.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: bad_syntax.py\n📊 Original: 65 chars, 1 functions\n\n🐛 Issues from audit:\n- [HIGH] Line 1: Missing colon after function definition → Add a colon after 'b)' in 'def calculate_sum(a, b):'\n- [MEDIUM] Line 1: Function 'calculate_sum' lacks docstring → Add a docstring explaining the function adds two numbers\n- [MEDIUM] Line 1: Missing type hints for parameters and return → Add type hints for 'a', 'b' parameters and the return va",
+            "output_response": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Add two numbers and return their sum.\"\"\"\n    return a + b",
+            "issues_count": 3,
+            "had_previous_errors": false,
+            "error_logs_count": 0,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "calculate_sum"
+            ],
+            "functions_expected": [
+                "calculate_sum"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "6b1750a3-c88d-408c-b4c0-3f0556ab2103",
+        "timestamp": "2026-02-28T23:32:46.752654",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\logic_bug.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: logic_bug.py\n📊 Original: 106 chars, 1 functions\n\n🐛 Issues from audit:\n- [HIGH] Line 4: Infinite loop due to incorrect increment. → Change 'n += 1' to 'n -= 1'.\n- [MEDIUM] Line 1: Function 'count_down' lacks a docstring. → Add docstring explaining function counts down from 'n'.\n- [MEDIUM] Line 1: Missing type hint for parameter 'n'. → Add type hint 'n: int' to function signature.\n\n\n\n📋 FUNCTIONS YOU MUST INCLUDE:\n   - Fun",
+            "output_response": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n: The starting integer for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1",
+            "issues_count": 3,
+            "had_previous_errors": false,
+            "error_logs_count": 0,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "count_down"
+            ],
+            "functions_expected": [
+                "count_down"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3b0e5be3-db5f-4874-9d5f-d6cc76738180",
+        "timestamp": "2026-02-28T23:32:50.417414",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\messy_code.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: messy_code.py\n📊 Original: 148 chars, 1 functions\n\n🐛 Issues from audit:\n- [MEDIUM] Line 1: Global variable 'x' is unused → Remove unused global variable 'x'\n- [MEDIUM] Line 3: Function 'f' lacks a docstring → Add docstring: 'Checks if input z is between 0 and 100 (exclusive).'\n- [LOW] Line 3: Parameter 'z' lacks documentation in docstring → Add param docstring for 'z': 'Args: z (int): The number to check.'\n- [MEDIUM] Lin",
+            "output_response": "def f(z):\n    \"\"\"Checks if input z is between 0 and 100 (exclusive).\n\n    Args:\n        z (int): The number to check.\n    \"\"\"\n    return 0 < z < 100",
+            "issues_count": 4,
+            "had_previous_errors": false,
+            "error_logs_count": 0,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "f"
+            ],
+            "functions_expected": [
+                "f"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "908f4fa4-05ff-433a-89cb-8e38af7f994d",
+        "timestamp": "2026-02-28T23:32:54.305147",
+        "agent": "X",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "a",
+            "output_response": "b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b0c275cb-69c8-4ad1-a934-2e0550161c6e",
+        "timestamp": "2026-02-28T23:33:09.990896",
+        "agent": "Judge_Agent",
+        "model": "N/A (Deterministic)",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Validation de 3 fichiers",
+            "output_response": "27/29 tests passés",
+            "tests_passed": 27,
+            "tests_failed": 1
+        },
+        "status": "FAILED"
+    },
+    {
+        "id": "168d059b-6388-4821-a002-12d6fb122877",
+        "timestamp": "2026-02-28T23:33:13.919633",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\bad_syntax.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: bad_syntax.py\n📊 Original: 106 chars, 1 functions\n\n🐛 Issues from audit:\n- [HIGH] Line 1: Missing colon after function definition → Add a colon after 'b)' in 'def calculate_sum(a, b):'\n- [MEDIUM] Line 1: Function 'calculate_sum' lacks docstring → Add a docstring explaining the function adds two numbers\n- [MEDIUM] Line 1: Missing type hints for parameters and return → Add type hints for 'a', 'b' parameters and the return v",
+            "output_response": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Add two numbers and return their sum.\"\"\"\n    return a + b",
+            "issues_count": 3,
+            "had_previous_errors": true,
+            "error_logs_count": 1,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "calculate_sum"
+            ],
+            "functions_expected": [
+                "calculate_sum"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "d160ba80-37c5-423b-a7dc-891e4b4ad766",
+        "timestamp": "2026-02-28T23:33:31.345384",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\logic_bug.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: logic_bug.py\n📊 Original: 196 chars, 1 functions\n\n🐛 Issues from audit:\n- [HIGH] Line 4: Infinite loop due to incorrect increment. → Change 'n += 1' to 'n -= 1'.\n- [MEDIUM] Line 1: Function 'count_down' lacks a docstring. → Add docstring explaining function counts down from 'n'.\n- [MEDIUM] Line 1: Missing type hint for parameter 'n'. → Add type hint 'n: int' to function signature.\n\n\n=======================================",
+            "output_response": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n: The starting integer for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1",
+            "issues_count": 3,
+            "had_previous_errors": true,
+            "error_logs_count": 1,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "count_down"
+            ],
+            "functions_expected": [
+                "count_down"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "41485168-e1ae-4ac2-9f22-8f842dd4bbdc",
+        "timestamp": "2026-02-28T23:33:44.155207",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\messy_code.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: messy_code.py\n📊 Original: 148 chars, 1 functions\n\n🐛 Issues from audit:\n- [MEDIUM] Line 1: Global variable 'x' is unused → Remove unused global variable 'x'\n- [MEDIUM] Line 3: Function 'f' lacks a docstring → Add docstring: 'Checks if input z is between 0 and 100 (exclusive).'\n- [LOW] Line 3: Parameter 'z' lacks documentation in docstring → Add param docstring for 'z': 'Args: z (int): The number to check.'\n- [MEDIUM] Lin",
+            "output_response": "def f(z):\n    \"\"\"Checks if input z is between 0 and 100 (exclusive).\n\n    Args:\n        z (int): The number to check.\n    \"\"\"\n    return 0 < z < 100",
+            "issues_count": 4,
+            "had_previous_errors": true,
+            "error_logs_count": 1,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "f"
+            ],
+            "functions_expected": [
+                "f"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9118ce26-b951-4dab-b1b6-c4c7dd056603",
+        "timestamp": "2026-02-28T23:33:46.243336",
+        "agent": "X",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "a",
+            "output_response": "b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "d72eb036-cd8f-4e7f-a334-902c905b61e6",
+        "timestamp": "2026-02-28T23:33:48.135329",
+        "agent": "Judge_Agent",
+        "model": "N/A (Deterministic)",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Validation de 3 fichiers",
+            "output_response": "27/29 tests passés",
+            "tests_passed": 27,
+            "tests_failed": 1
+        },
+        "status": "FAILED"
+    },
+    {
+        "id": "f4de1518-f2cf-4fb1-9f64-9ab9e234f03c",
+        "timestamp": "2026-02-28T23:34:01.689226",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\bad_syntax.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: bad_syntax.py\n📊 Original: 106 chars, 1 functions\n\n🐛 Issues from audit:\n- [HIGH] Line 1: Missing colon after function definition → Add a colon after 'b)' in 'def calculate_sum(a, b):'\n- [MEDIUM] Line 1: Function 'calculate_sum' lacks docstring → Add a docstring explaining the function adds two numbers\n- [MEDIUM] Line 1: Missing type hints for parameters and return → Add type hints for 'a', 'b' parameters and the return v",
+            "output_response": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Add two numbers and return their sum.\"\"\"\n    return a + b",
+            "issues_count": 3,
+            "had_previous_errors": true,
+            "error_logs_count": 1,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "calculate_sum"
+            ],
+            "functions_expected": [
+                "calculate_sum"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "2af58996-8d0e-44ab-8714-5adb4189fca4",
+        "timestamp": "2026-02-28T23:34:26.225065",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\logic_bug.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: logic_bug.py\n📊 Original: 196 chars, 1 functions\n\n🐛 Issues from audit:\n- [HIGH] Line 4: Infinite loop due to incorrect increment. → Change 'n += 1' to 'n -= 1'.\n- [MEDIUM] Line 1: Function 'count_down' lacks a docstring. → Add docstring explaining function counts down from 'n'.\n- [MEDIUM] Line 1: Missing type hint for parameter 'n'. → Add type hint 'n: int' to function signature.\n\n\n=======================================",
+            "output_response": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n: The starting integer for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1",
+            "issues_count": 3,
+            "had_previous_errors": true,
+            "error_logs_count": 1,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "count_down"
+            ],
+            "functions_expected": [
+                "count_down"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "653bb973-a733-4ac1-99c6-072da35c1b28",
+        "timestamp": "2026-02-28T23:34:41.547131",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "sandbox\\hidden_dataset\\messy_code.py",
+            "input_prompt": "You are fixing a Python file. Generate the COMPLETE corrected code.\n\n📁 File: messy_code.py\n📊 Original: 148 chars, 1 functions\n\n🐛 Issues from audit:\n- [MEDIUM] Line 1: Global variable 'x' is unused → Remove unused global variable 'x'\n- [MEDIUM] Line 3: Function 'f' lacks a docstring → Add docstring: 'Checks if input z is between 0 and 100 (exclusive).'\n- [LOW] Line 3: Parameter 'z' lacks documentation in docstring → Add param docstring for 'z': 'Args: z (int): The number to check.'\n- [MEDIUM] Lin",
+            "output_response": "def f(z):\n    \"\"\"Checks if input z is between 0 and 100 (exclusive).\n\n    Args:\n        z (int): The number to check.\n    \"\"\"\n    return 0 < z < 100",
+            "issues_count": 4,
+            "had_previous_errors": true,
+            "error_logs_count": 1,
+            "attempt_number": 1,
+            "signatures_preserved": true,
+            "functions_generated": [
+                "f"
+            ],
+            "functions_expected": [
+                "f"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "5e979475-f69d-4e4a-aa1f-f633d0f99be2",
+        "timestamp": "2026-02-28T23:34:43.726164",
+        "agent": "X",
+        "model": "N/A",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "a",
+            "output_response": "b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9de92c9d-38aa-4eb9-9968-0a3115f2fd2f",
+        "timestamp": "2026-02-28T23:34:45.544788",
+        "agent": "Judge_Agent",
+        "model": "N/A (Deterministic)",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "Validation de 3 fichiers",
+            "output_response": "27/29 tests passés",
+            "tests_passed": 27,
+            "tests_failed": 1
+        },
+        "status": "FAILED"
+    }
+]

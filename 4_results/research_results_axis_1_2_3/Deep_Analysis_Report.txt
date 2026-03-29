@@ -1,0 +1,23 @@
+=== DEEP V2 STATISTICAL ANALYSIS REPORT ===
+
+--- AXIS 1 : LLM PERFORMANCE (REPRESENTATIVE SAMPLES ONLY) ---
+Performance of statistically significant LLM families (N >= 5):
+            team_count  avg_score  std_deviation
+llm_family                                      
+Gemini              39      16.69           4.74
+Llama                9      17.11           3.48
+Mistral             11      17.09           5.89
+
+[Statistical Test] ANOVA p-value across major LLMs: 0.9537
+-> Conclusion: NO significant difference. The models have reached parity.
+
+--- AXIS 2 : PYTHON EXPERTISE OVERALL IMPACT ---
+Top 25% Python Teams Avg Score: 15.80 / 20
+Bottom 25% Python Teams Avg Score: 17.61 / 20
+[Statistical Test] Independent T-test p-value: 0.2889
+
+--- AXIS 3 : TEAM COLLABORATION IMPACT ---
+Top 25% Most Balanced Teams Avg Score: 17.26 / 20
+Bottom 25% Least Balanced Teams (Lone Wolves) Avg Score: 16.41 / 20
+[Statistical Test] Independent T-test p-value: 0.3116
+-> Conclusion: While balanced teams perform slightly better, the gap is NOT statistically significant.

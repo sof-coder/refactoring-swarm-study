@@ -1,0 +1,526 @@
+[
+    {
+        "id": "a30ae459-d5bd-450c-a9f1-d664bbb2ff7f",
+        "timestamp": "2026-02-28T23:28:59.908881",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "965be6f5-d7e2-4df1-8f5a-534be7fbdf44",
+        "timestamp": "2026-02-28T23:29:36.532601",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 1,
+                "file_path": "sandbox\\hidden_dataset\\calculator.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "51166859-db56-4ba1-ae25-2c53f90437cd",
+        "timestamp": "2026-02-28T23:29:38.269608",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 1,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.11s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "6735a88a-a0d6-4fb1-abf7-5e7796d9ff2a",
+        "timestamp": "2026-02-28T23:30:14.134330",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "c770564c-7ef2-442c-99be-c98d0b8cefeb",
+        "timestamp": "2026-02-28T23:30:49.170428",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 2,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9668193b-60b1-40be-afb1-f9018c86ac35",
+        "timestamp": "2026-02-28T23:30:50.380027",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 2,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "278b4967-5cee-42ae-9668-853b18e86748",
+        "timestamp": "2026-02-28T23:31:26.572350",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "6e68a963-d646-4a08-a55f-e56adf93144b",
+        "timestamp": "2026-02-28T23:32:02.751266",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 3,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3690860b-a370-4520-a00f-676573fd3c23",
+        "timestamp": "2026-02-28T23:32:03.964873",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 3,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "42141f08-960e-4173-b3e0-586b12e1046c",
+        "timestamp": "2026-02-28T23:32:40.050698",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3a070a3f-32fa-4639-a8d1-c1b88b74200a",
+        "timestamp": "2026-02-28T23:33:16.535448",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 4,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3_fixed_iter_4.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "10082994-bfcb-49d6-9a68-68fb1a1cc1e9",
+        "timestamp": "2026-02-28T23:33:17.722267",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 4,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "978d559f-a280-4357-bb3e-b01bd7268639",
+        "timestamp": "2026-02-28T23:33:54.435237",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3_fixed_iter_4.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3_fixed_iter_4.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "08afe6a0-dc7a-420d-8da3-9ab5f946011c",
+        "timestamp": "2026-02-28T23:34:32.918438",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 5,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3_fixed_iter_4.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_2_fixed_iter_3_fixed_iter_4_fixed_iter_5.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a77d7249-bd07-4821-829d-23951ce8db5b",
+        "timestamp": "2026-02-28T23:34:34.175769",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 5,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "1e094960-9299-4a8a-b1eb-928e6f2dfb50",
+        "timestamp": "2026-02-28T23:35:12.857028",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a7d344a0-1979-4fd9-8da7-8b18d97379b9",
+        "timestamp": "2026-02-28T23:35:50.970191",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 1,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ebf5cf59-6533-4fd3-bb7a-477e65651896",
+        "timestamp": "2026-02-28T23:35:52.308021",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 1,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "d3d4cc05-63ed-4e62-8648-c5167f7053e6",
+        "timestamp": "2026-02-28T23:36:29.096140",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e7b1836f-35b0-48d3-8e66-9f0ce0148169",
+        "timestamp": "2026-02-28T23:37:08.207206",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 2,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a6917d79-e3c6-4b6e-84ed-fba79280cd3d",
+        "timestamp": "2026-02-28T23:37:09.463034",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 2,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "508bb285-ed23-46eb-9270-dea7adb67227",
+        "timestamp": "2026-02-28T23:37:46.610926",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "59096431-de7d-4f85-8327-194ef091b31f",
+        "timestamp": "2026-02-28T23:38:24.052356",
+        "agent": "Fixer",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": {
+                "iteration": 3,
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2.py",
+                "auditor_output": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            },
+            "output_response": {
+                "fixed_file": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+                "note": "Correction appliquée via Gemini"
+            }
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "0031c553-8a5d-4ed5-8917-68ef20ed1d96",
+        "timestamp": "2026-02-28T23:38:25.391952",
+        "agent": "Judge",
+        "model": "N/A",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": {
+                "iteration": 3,
+                "target_dir": "./sandbox/hidden_dataset"
+            },
+            "output_response": {
+                "returncode": 5,
+                "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.13.5, pytest-7.4.4, pluggy-1.6.0\nrootdir: C:\\Refactoring-Swarm-Equipe-33\nplugins: anyio-4.12.1, langsmith-0.7.9\ncollected 0 items\n\n============================ no tests ran in 0.03s ============================\n",
+                "stderr": ""
+            }
+        },
+        "status": "FAIL"
+    },
+    {
+        "id": "ad52139a-9510-4e6b-b1a8-fb1aee73e3ad",
+        "timestamp": "2026-02-28T23:39:06.314342",
+        "agent": "Auditor",
+        "model": "gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze the file: sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+            "output_response": {
+                "file_path": "sandbox\\hidden_dataset\\calculator_fixed_iter_1_fixed_iter_1_fixed_iter_2_fixed_iter_3.py",
+                "result": {
+                    "issues": [
+                        "LLM Error: Error calling model 'gemini-2.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+                    ],
+                    "decision": "REQUIRES_FIX"
+                }
+            }
+        },
+        "status": "SUCCESS"
+    }
+]

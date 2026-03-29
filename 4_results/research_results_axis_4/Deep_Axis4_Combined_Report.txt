@@ -1,0 +1,16 @@
+=== DEEP AXIS 4: BEHAVIORAL REPORT (PROTOTYPING + HACKATHON) ===
+
+Total API Calls Processed (Prototyping Phase): 19630
+Total API Calls Processed (Hackathon Phase): 2278
+
+Correlation [Prototyping API Calls] vs [Team Score]: -0.05 (p-value: 0.7229)
+Correlation [Hackathon TDD Loops] vs [Team Score]: -0.11 (p-value: 0.3754)
+
+--- Top 5 Most Frequent Hackathon Transitions ---
+std_agent  next_agent
+Fixer      Judge         390
+           Fixer         316
+Judge      Judge         285
+           Fixer         234
+Auditor    Fixer         196
+

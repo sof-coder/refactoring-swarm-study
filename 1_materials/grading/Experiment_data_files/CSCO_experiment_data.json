@@ -1,0 +1,1330 @@
+[
+    {
+        "id": "92da7e18-afb6-455c-a342-9bcd6e3ede33",
+        "timestamp": "2026-02-28T22:30:21.653539",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "GENERATION",
+        "details": {
+            "operation": "orchestrator_initialization",
+            "input_prompt": "Initializing orchestrator for directory: ./sandbox/hidden_dataset",
+            "output_response": "Orchestrator initialized with LangGraph v2.1. Target: ./sandbox/hidden_dataset, Max iterations: 10",
+            "target_directory": "./sandbox/hidden_dataset",
+            "max_iterations": 10,
+            "workflow_engine": "LangGraph_v2.1",
+            "agents_available": [
+                "AuditorAgent",
+                "FixerAgent",
+                "JudgeAgent"
+            ]
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3157cc9a-6800-4be6-b0f8-a7ec7754d15a",
+        "timestamp": "2026-02-28T22:30:21.657597",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "files_discovered",
+            "input_prompt": "Completed directory scan: ./sandbox/hidden_dataset",
+            "output_response": "Found 3 Python files ready for processing",
+            "target_directory": "./sandbox/hidden_dataset",
+            "files_found": [
+                "./sandbox/hidden_dataset\\bad_syntax.py",
+                "./sandbox/hidden_dataset\\logic_bug.py",
+                "./sandbox/hidden_dataset\\messy_code.py"
+            ],
+            "file_count": 3
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a4a7db60-dc11-4d58-9a0f-1de966ff85c3",
+        "timestamp": "2026-02-28T22:30:21.688010",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_processing_start",
+            "input_prompt": "Starting workflow for file: bad_syntax.py",
+            "output_response": "Initializing LangGraph workflow for bad_syntax.py (max 10 iterations)",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "file_name": "bad_syntax.py",
+            "max_iterations": 10,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "add8fb36-4dad-40f8-ba02-995d7438358d",
+        "timestamp": "2026-02-28T22:30:21.710358",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1e853ab8-0b4a-4eaa-994c-3011b977ab9d",
+        "timestamp": "2026-02-28T22:30:21.740948",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 65 characters from bad_syntax.py",
+            "file_size_chars": 65,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a, b)  # Manque le deux-points\n    return a + b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "276b45c7-6fa7-4ec8-aa6f-5a922ba00b6c",
+        "timestamp": "2026-02-28T22:30:21.909883",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "00f6283f-0c1e-42a0-be02-ee590c6d8f25",
+        "timestamp": "2026-02-28T22:30:21.922234",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 65 characters from bad_syntax.py",
+            "file_size_chars": 65,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a, b)  # Manque le deux-points\n    return a + b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "bcb8b0ba-979e-4623-9491-fc9e5c24166d",
+        "timestamp": "2026-02-28T22:30:41.596551",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "bad_syntax.py",
+            "input_prompt": "Tu es un expert Python et auditeur de code.\n\n📋 FICHIER : bad_syntax.py\n\n🎯 MISSION :\nAnalyse ce code et détecte TOUS les problèmes. Ne JAMAIS inventer de bugs inexistants.\n\n🐛 TYPES DE PROBLÈMES À DÉTECTER :\n\nCRITICAL :\n- Variables non définies\n- Imports manquants\n- Syntaxe invalide\n\nHIGH :\n- Division par zéro\n- Index hors limites\n- Opérations sur None\n- Clés dictionnaire inexistantes\n- Fichiers inexistants\n\nMEDIUM :\n- Docstrings manquantes\n- Pas de type hints\n- Nommage non descriptif\n\nLOW :\n- Violations PEP8 (espaces, longueur ligne)\n- Imports désordonnés\n\n📝 CODE À ANALYSER :\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure exacte :\n\n{\"file\":\"bad_syntax.py\",\"total_issues\":X,\"issues\":[{\"line\":N,\"type\":\"...\",\"severity\":\"...\",\"description\":\"...\",\"suggestion\":\"...\"}]}\n\nExemple :\n{\"file\":\"test.py\",\"total_issues\":2,\"issues\":[{\"line\":5,\"type\":\"undefined_variable\",\"severity\":\"HIGH\",\"description\":\"Variable 'x' not defined\",\"suggestion\":\"Define 'x' before use\"},{\"line\":10,\"type\":\"missing_docstring\",\"severity\":\"MEDIUM\",\"description\":\"Function lacks docstring\",\"suggestion\":\"Add docstring with Args/Returns\"}]}\n\nSi aucun bug : {\"file\":\"bad_syntax.py\",\"total_issues\":0,\"issues\":[]}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"file\": \"bad_syntax.py\",\n  \"total_issues\": 3,\n  \"issues\": [\n    {\n      \"line\": 1,\n      \"type\": \"invalid_syntax\",\n      \"severity\": \"CRITICAL\",\n      \"description\": \"Missing colon at the end of the function definition.\",\n      \"suggestion\": \"Add a colon (':') at the end of the `def` statement for `calculate_sum`.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_docstring\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function `calculate_sum` lacks a docstring.\",\n      \"suggestion\": \"Add a docstring explaining the function's purpose, arguments, and return value.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_type_hints\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function `calculate_sum` is missing type hints for parameters and return value.\",\n      \"suggestion\": \"Add type hints to parameters `a`, `b` and the return value (e.g., `def calculate_sum(a: int, b: int) -> int:`).\"\n    }\n  ]\n}\n```",
+            "bugs_found": 3,
+            "code_lines": 2
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ef0603df-0b59-48a7-bc8a-817369d8b6dd",
+        "timestamp": "2026-02-28T22:30:41.650538",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "84e376cc-f95a-44ce-af8c-3dead677aa4b",
+        "timestamp": "2026-02-28T22:30:41.684956",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 65 characters from bad_syntax.py",
+            "file_size_chars": 65,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a, b)  # Manque le deux-points\n    return a + b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b28a7634-f1a4-4845-80b8-e9538486b5e4",
+        "timestamp": "2026-02-28T22:30:55.813673",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "942cd3d7-4983-414d-82f8-d7436d1e30df",
+        "timestamp": "2026-02-28T22:30:55.815679",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "FIX",
+        "details": {
+            "operation": "write_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Writing content to file: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully wrote 227 characters to bad_syntax.py",
+            "content_size_chars": 227,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Calculates the sum of two integers.\n\n    Args:\n        a: The first integer.\n        b: The second in..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "0c3a8631-6bf8-4282-8c4b-49c029cf14d0",
+        "timestamp": "2026-02-28T22:30:55.836742",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "bad_syntax.py",
+            "input_prompt": "Tu es un expert Python chargé de corriger les bugs détectés.\n\n📋 FICHIER : bad_syntax.py\n\n🐛 RAPPORT D'AUDIT :\n{\n  \"file\": \"bad_syntax.py\",\n  \"total_issues\": 3,\n  \"issues\": [\n    {\n      \"line\": 1,\n      \"type\": \"invalid_syntax\",\n      \"severity\": \"CRITICAL\",\n      \"description\": \"Missing colon at the end of the function definition.\",\n      \"suggestion\": \"Add a colon (':') at the end of the `def` statement for `calculate_sum`.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_docstring\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function `calculate_sum` lacks a docstring.\",\n      \"suggestion\": \"Add a docstring explaining the function's purpose, arguments, and return value.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_type_hints\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function `calculate_sum` is missing type hints for parameters and return value.\",\n      \"suggestion\": \"Add type hints to parameters `a`, `b` and the return value (e.g., `def calculate_sum(a: int, b: int) -> int:`).\"\n    }\n  ]\n}\n\n📝 CODE ORIGINAL :\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\n🎯 TA MISSION :\nCorrige TOUS les bugs listés dans le rapport.\n\n✅ RÈGLES :\n- Conserve la structure et logique originale\n- Ajoute docstrings Google format (Args, Returns)\n- Gère les cas limites (division par zéro, listes vides, None)\n- Respecte PEP8\n- Ne réécris pas complètement le code\n\n❌ INTERDICTIONS :\n- Ajouter des fonctionnalités non demandées\n- Changer la logique métier\n- Inclure des explications ou commentaires (sauf docstrings)\n\n📤 FORMAT DE SORTIE :\nCode Python pur UNIQUEMENT. Pas de :\n- Balises markdown (```python)\n- Explications textuelles\n- Commentaires de changements\n\nCommence directement par le code corrigé.\n",
+            "output_response": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Calculates the sum of two integers.\n\n    Args:\n        a: The first integer.\n        b: The second integer.\n\n    Returns:\n        The sum of `a` and `b`.\n    \"\"\"\n    return a + b",
+            "bugs_fixed": 3,
+            "original_lines": 2,
+            "fixed_lines": 11,
+            "syntax_valid": true
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e56679da-e3e0-4ab0-b5b0-6bb35bd5d49a",
+        "timestamp": "2026-02-28T22:30:55.855099",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "5f39be4d-0683-47c5-aa34-873a0162cd71",
+        "timestamp": "2026-02-28T22:30:55.881992",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 227 characters from bad_syntax.py",
+            "file_size_chars": 227,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Calculates the sum of two integers.\n\n    Args:\n        a: The first integer.\n        b: The second in..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ef49f10c-396f-4e8d-a747-159bcccba0cf",
+        "timestamp": "2026-02-28T22:30:57.078417",
+        "agent": "Pytest_Tool",
+        "model": "pytest",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "unit_testing",
+            "test_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Running tests in: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Tests completed: 0 passed, 0 failed",
+            "passed_count": 0,
+            "failed_count": 0,
+            "returncode": 5,
+            "output_preview": "\nno tests ran in 0.01s\n"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "40e0d51e-8dd0-4eca-8992-a83ebdf2049e",
+        "timestamp": "2026-02-28T22:31:22.359696",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "file_tested": "bad_syntax.py",
+            "input_prompt": "Tu es un expert en tests Python. Analyse les résultats pytest et décide de la suite.\n\n📋 FICHIER TESTÉ : bad_syntax.py\n\n📊 SORTIE PYTEST :\n```\n\nno tests ran in 0.01s\n\n\n```\n\n🎯 TA MISSION :\nInterpréter les résultats et prendre une décision.\n\n✅ DÉCISION \"VALIDATE\" SI :\n- Tous les tests passent (100%)\n- Aucune erreur d'exécution\n\n❌ DÉCISION \"PASS_TO_FIXER\" SI :\n- Au moins 1 test échoue\n- Erreur de collection\n- Aucun test trouvé\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure :\n\nSuccès :\n{\"decision\":\"VALIDATE\",\"tests_run\":X,\"tests_passed\":X,\"tests_failed\":0,\"errors\":[],\"message\":\"All tests passed\"}\n\nÉchec :\n{\"decision\":\"PASS_TO_FIXER\",\"tests_run\":X,\"tests_passed\":Y,\"tests_failed\":Z,\"errors\":[{\"test_name\":\"...\",\"error_type\":\"...\",\"error_message\":\"...\",\"location\":\"...\"}],\"message\":\"Z tests failed\"}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"decision\": \"PASS_TO_FIXER\",\n  \"tests_run\": 0,\n  \"tests_passed\": 0,\n  \"tests_failed\": 0,\n  \"errors\": [\n    {\n      \"test_name\": \"bad_syntax.py\",\n      \"error_type\": \"CollectionError\",\n      \"error_message\": \"Pytest did not find any test items in bad_syntax.py. This could be due to no test functions/classes being defined or a syntax error preventing proper collection.\",\n      \"location\": \"bad_syntax.py\"\n    }\n  ],\n  \"message\": \"0 tests failed\"\n}\n```",
+            "decision": "PASS_TO_FIXER",
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "pytest_returncode": 5,
+            "pytest_output": "\nno tests ran in 0.01s\n\n"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1780bed5-ee24-438e-8a85-f83956d4b774",
+        "timestamp": "2026-02-28T22:31:22.380682",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1cbeedbd-beb5-4cce-a096-349971429e26",
+        "timestamp": "2026-02-28T22:31:22.394799",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 227 characters from bad_syntax.py",
+            "file_size_chars": 227,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Calculates the sum of two integers.\n\n    Args:\n        a: The first integer.\n        b: The second in..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "cfa9b4c1-0ef2-40a3-8c4a-908f8379c813",
+        "timestamp": "2026-02-28T22:31:26.657149",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "bad_syntax.py",
+            "input_prompt": "Tu es un expert Python et auditeur de code.\n\n📋 FICHIER : bad_syntax.py\n\n🎯 MISSION :\nAnalyse ce code et détecte TOUS les problèmes. Ne JAMAIS inventer de bugs inexistants.\n\n🐛 TYPES DE PROBLÈMES À DÉTECTER :\n\nCRITICAL :\n- Variables non définies\n- Imports manquants\n- Syntaxe invalide\n\nHIGH :\n- Division par zéro\n- Index hors limites\n- Opérations sur None\n- Clés dictionnaire inexistantes\n- Fichiers inexistants\n\nMEDIUM :\n- Docstrings manquantes\n- Pas de type hints\n- Nommage non descriptif\n\nLOW :\n- Violations PEP8 (espaces, longueur ligne)\n- Imports désordonnés\n\n📝 CODE À ANALYSER :\n```python\ndef calculate_sum(a: int, b: int) -> int:\n    \"\"\"Calculates the sum of two integers.\n\n    Args:\n        a: The first integer.\n        b: The second integer.\n\n    Returns:\n        The sum of `a` and `b`.\n    \"\"\"\n    return a + b\n```\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure exacte :\n\n{\"file\":\"bad_syntax.py\",\"total_issues\":X,\"issues\":[{\"line\":N,\"type\":\"...\",\"severity\":\"...\",\"description\":\"...\",\"suggestion\":\"...\"}]}\n\nExemple :\n{\"file\":\"test.py\",\"total_issues\":2,\"issues\":[{\"line\":5,\"type\":\"undefined_variable\",\"severity\":\"HIGH\",\"description\":\"Variable 'x' not defined\",\"suggestion\":\"Define 'x' before use\"},{\"line\":10,\"type\":\"missing_docstring\",\"severity\":\"MEDIUM\",\"description\":\"Function lacks docstring\",\"suggestion\":\"Add docstring with Args/Returns\"}]}\n\nSi aucun bug : {\"file\":\"bad_syntax.py\",\"total_issues\":0,\"issues\":[]}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\"file\":\"bad_syntax.py\",\"total_issues\":0,\"issues\":[]}\n```",
+            "bugs_found": 0,
+            "code_lines": 11
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3bc3bc1c-a2a7-43d0-b711-2605e8a55f31",
+        "timestamp": "2026-02-28T22:31:26.686055",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\bad_syntax.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "5d4b2f94-9c00-4743-82a7-921e2d47f785",
+        "timestamp": "2026-02-28T22:31:26.702112",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\bad_syntax.py",
+            "output_response": "Successfully read 227 characters from bad_syntax.py",
+            "file_size_chars": 227,
+            "file_name": "bad_syntax.py",
+            "content_preview": "def calculate_sum(a: int, b: int) -> int:\n    \"\"\"Calculates the sum of two integers.\n\n    Args:\n        a: The first integer.\n        b: The second in..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "c1b37a96-4227-4f5d-876d-f1c57e9a545e",
+        "timestamp": "2026-02-28T22:31:26.736115",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "file_tested": "bad_syntax.py",
+            "input_prompt": "Validation sans tests unitaires",
+            "output_response": "{\"decision\": \"VALIDATE\", \"passed\": 0, \"failed\": 0, \"message\": \"Code propre, syntaxe valide, aucun bug d\\u00e9tect\\u00e9\", \"validation_method\": \"audit_only\"}",
+            "decision": "VALIDATE",
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "bugs_in_audit": 0,
+            "validation_method": "audit_only"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "230533cb-1cf9-4e3b-904e-8c6da7ddc0d0",
+        "timestamp": "2026-02-28T22:31:26.798966",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "graph_execution_complete",
+            "input_prompt": "LangGraph workflow completed for bad_syntax.py",
+            "output_response": "Graph execution finished. Status: VALIDATED, Iterations: 20",
+            "file_name": "bad_syntax.py",
+            "iterations_executed": 20,
+            "final_status": "VALIDATED",
+            "bugs_found": 48,
+            "bugs_fixed": 48,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "c6c9a14a-4a9b-43b5-88a9-a3017cfe0bcb",
+        "timestamp": "2026-02-28T22:31:26.843013",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_validated",
+            "input_prompt": "File bad_syntax.py successfully validated",
+            "output_response": "Validation complete after 20 iterations. 48 bugs fixed.",
+            "file_name": "bad_syntax.py",
+            "iterations": 20,
+            "bugs_found": 48,
+            "bugs_fixed": 48,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ef5ef299-fee7-4b1c-94b3-aa6dc76bfb73",
+        "timestamp": "2026-02-28T22:31:26.871938",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_processing_complete",
+            "file": "bad_syntax.py",
+            "input_prompt": "Completed processing file: bad_syntax.py",
+            "output_response": "File processing finished. Status: VALIDATED, Iterations: 20, Bugs found: 48, Bugs fixed: 48",
+            "file_path": "./sandbox/hidden_dataset\\bad_syntax.py",
+            "iterations": 20,
+            "bugs_found": 48,
+            "bugs_fixed": 48,
+            "final_status": "VALIDATED",
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1e3a9b77-fdd2-4d74-a725-688103c6d29f",
+        "timestamp": "2026-02-28T22:31:26.909528",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_processing_start",
+            "input_prompt": "Starting workflow for file: logic_bug.py",
+            "output_response": "Initializing LangGraph workflow for logic_bug.py (max 10 iterations)",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "file_name": "logic_bug.py",
+            "max_iterations": 10,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "361c33a3-c743-4505-9ee3-0aa840d2afee",
+        "timestamp": "2026-02-28T22:31:26.936854",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "045f60eb-b62f-476b-814b-9541e98a7b69",
+        "timestamp": "2026-02-28T22:31:26.968325",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 106 characters from logic_bug.py",
+            "file_size_chars": 106,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ddbde3fc-c6b1-4552-ba07-c97356be6044",
+        "timestamp": "2026-02-28T22:31:37.452939",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3bc2de35-6e16-4b74-b9a2-02e1883ab0f3",
+        "timestamp": "2026-02-28T22:31:37.456981",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 106 characters from logic_bug.py",
+            "file_size_chars": 106,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9410f231-441b-4814-9e72-5b1c025c05ea",
+        "timestamp": "2026-02-28T22:32:00.289270",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "logic_bug.py",
+            "input_prompt": "Tu es un expert Python et auditeur de code.\n\n📋 FICHIER : logic_bug.py\n\n🎯 MISSION :\nAnalyse ce code et détecte TOUS les problèmes. Ne JAMAIS inventer de bugs inexistants.\n\n🐛 TYPES DE PROBLÈMES À DÉTECTER :\n\nCRITICAL :\n- Variables non définies\n- Imports manquants\n- Syntaxe invalide\n\nHIGH :\n- Division par zéro\n- Index hors limites\n- Opérations sur None\n- Clés dictionnaire inexistantes\n- Fichiers inexistants\n\nMEDIUM :\n- Docstrings manquantes\n- Pas de type hints\n- Nommage non descriptif\n\nLOW :\n- Violations PEP8 (espaces, longueur ligne)\n- Imports désordonnés\n\n📝 CODE À ANALYSER :\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure exacte :\n\n{\"file\":\"logic_bug.py\",\"total_issues\":X,\"issues\":[{\"line\":N,\"type\":\"...\",\"severity\":\"...\",\"description\":\"...\",\"suggestion\":\"...\"}]}\n\nExemple :\n{\"file\":\"test.py\",\"total_issues\":2,\"issues\":[{\"line\":5,\"type\":\"undefined_variable\",\"severity\":\"HIGH\",\"description\":\"Variable 'x' not defined\",\"suggestion\":\"Define 'x' before use\"},{\"line\":10,\"type\":\"missing_docstring\",\"severity\":\"MEDIUM\",\"description\":\"Function lacks docstring\",\"suggestion\":\"Add docstring with Args/Returns\"}]}\n\nSi aucun bug : {\"file\":\"logic_bug.py\",\"total_issues\":0,\"issues\":[]}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"file\": \"logic_bug.py\",\n  \"total_issues\": 3,\n  \"issues\": [\n    {\n      \"line\": 4,\n      \"type\": \"logic_error\",\n      \"severity\": \"HIGH\",\n      \"description\": \"The `count_down` function increments `n` (`n += 1`) instead of decrementing it. This causes an infinite loop when `n` is initially positive, preventing the function from counting down as intended.\",\n      \"suggestion\": \"Change `n += 1` to `n -= 1` to correctly decrement the counter and terminate the loop.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_docstring\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function `count_down` lacks a docstring.\",\n      \"suggestion\": \"Add a docstring explaining the function's purpose, its arguments, and what it does, for example: `\\\"\\\"\\\"Counts down from n to 1, printing each number.\\\"\\\"\\\"`.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_type_hint\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Parameter `n` for function `count_down` is missing type hints.\",\n      \"suggestion\": \"Add type hints for the parameter `n` for better code clarity and maintainability, e.g., `def count_down(n: int):`.\"\n    }\n  ]\n}\n```",
+            "bugs_found": 3,
+            "code_lines": 4
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "42b8a720-f885-4da6-bd1b-99ec870a6850",
+        "timestamp": "2026-02-28T22:32:00.312214",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9d123c35-6f73-4a24-9783-21ac7a4ab8c7",
+        "timestamp": "2026-02-28T22:32:00.331213",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 106 characters from logic_bug.py",
+            "file_size_chars": 106,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "bc231035-93df-4341-b16c-6f3e5a9f52d1",
+        "timestamp": "2026-02-28T22:32:09.588815",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a61bf5dc-82da-46ae-90c7-6bbe75d2cdb3",
+        "timestamp": "2026-02-28T22:32:09.594900",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "FIX",
+        "details": {
+            "operation": "write_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Writing content to file: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully wrote 201 characters to logic_bug.py",
+            "content_size_chars": 201,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n (int): The starting number for the countdown.\n    \"..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9bfecc42-0269-4e7d-9574-c8d29c8e878e",
+        "timestamp": "2026-02-28T22:32:09.653198",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "logic_bug.py",
+            "input_prompt": "Tu es un expert Python chargé de corriger les bugs détectés.\n\n📋 FICHIER : logic_bug.py\n\n🐛 RAPPORT D'AUDIT :\n{\n  \"file\": \"logic_bug.py\",\n  \"total_issues\": 3,\n  \"issues\": [\n    {\n      \"line\": 4,\n      \"type\": \"logic_error\",\n      \"severity\": \"HIGH\",\n      \"description\": \"The `count_down` function increments `n` (`n += 1`) instead of decrementing it. This causes an infinite loop when `n` is initially positive, preventing the function from counting down as intended.\",\n      \"suggestion\": \"Change `n += 1` to `n -= 1` to correctly decrement the counter and terminate the loop.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_docstring\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function `count_down` lacks a docstring.\",\n      \"suggestion\": \"Add a docstring explaining the function's purpose, its arguments, and what it does, for example: `\\\"\\\"\\\"Counts down from n to 1, printing each number.\\\"\\\"\\\"`.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"missing_type_hint\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Parameter `n` for function `count_down` is missing type hints.\",\n      \"suggestion\": \"Add type hints for the parameter `n` for better code clarity and maintainability, e.g., `def count_down(n: int):`.\"\n    }\n  ]\n}\n\n📝 CODE ORIGINAL :\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\n🎯 TA MISSION :\nCorrige TOUS les bugs listés dans le rapport.\n\n✅ RÈGLES :\n- Conserve la structure et logique originale\n- Ajoute docstrings Google format (Args, Returns)\n- Gère les cas limites (division par zéro, listes vides, None)\n- Respecte PEP8\n- Ne réécris pas complètement le code\n\n❌ INTERDICTIONS :\n- Ajouter des fonctionnalités non demandées\n- Changer la logique métier\n- Inclure des explications ou commentaires (sauf docstrings)\n\n📤 FORMAT DE SORTIE :\nCode Python pur UNIQUEMENT. Pas de :\n- Balises markdown (```python)\n- Explications textuelles\n- Commentaires de changements\n\nCommence directement par le code corrigé.\n",
+            "output_response": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n (int): The starting number for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1",
+            "bugs_fixed": 3,
+            "original_lines": 4,
+            "fixed_lines": 9,
+            "syntax_valid": true
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3c405ebc-db53-45a1-a160-5148c7856988",
+        "timestamp": "2026-02-28T22:32:09.676677",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "49536973-82d3-4e1a-976b-67908d6aa1fe",
+        "timestamp": "2026-02-28T22:32:09.732001",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 201 characters from logic_bug.py",
+            "file_size_chars": 201,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n (int): The starting number for the countdown.\n    \"..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "28e85503-ee62-47cc-a446-cf8f524d2ba0",
+        "timestamp": "2026-02-28T22:32:10.682873",
+        "agent": "Pytest_Tool",
+        "model": "pytest",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "unit_testing",
+            "test_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Running tests in: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Tests completed: 0 passed, 0 failed",
+            "passed_count": 0,
+            "failed_count": 0,
+            "returncode": 5,
+            "output_preview": "\nno tests ran in 0.02s\n"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f3faf144-03d9-4d82-969e-dc965e4d7719",
+        "timestamp": "2026-02-28T22:32:27.452466",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "file_tested": "logic_bug.py",
+            "input_prompt": "Tu es un expert en tests Python. Analyse les résultats pytest et décide de la suite.\n\n📋 FICHIER TESTÉ : logic_bug.py\n\n📊 SORTIE PYTEST :\n```\n\nno tests ran in 0.02s\n\n\n```\n\n🎯 TA MISSION :\nInterpréter les résultats et prendre une décision.\n\n✅ DÉCISION \"VALIDATE\" SI :\n- Tous les tests passent (100%)\n- Aucune erreur d'exécution\n\n❌ DÉCISION \"PASS_TO_FIXER\" SI :\n- Au moins 1 test échoue\n- Erreur de collection\n- Aucun test trouvé\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure :\n\nSuccès :\n{\"decision\":\"VALIDATE\",\"tests_run\":X,\"tests_passed\":X,\"tests_failed\":0,\"errors\":[],\"message\":\"All tests passed\"}\n\nÉchec :\n{\"decision\":\"PASS_TO_FIXER\",\"tests_run\":X,\"tests_passed\":Y,\"tests_failed\":Z,\"errors\":[{\"test_name\":\"...\",\"error_type\":\"...\",\"error_message\":\"...\",\"location\":\"...\"}],\"message\":\"Z tests failed\"}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"decision\": \"PASS_TO_FIXER\",\n  \"tests_run\": 0,\n  \"tests_passed\": 0,\n  \"tests_failed\": 0,\n  \"errors\": [\n    {\n      \"test_name\": \"pytest collection\",\n      \"error_type\": \"NoTestsFound\",\n      \"error_message\": \"Pytest reported that no tests were found to run within the specified context (logic_bug.py). This could indicate missing test functions (e.g., functions starting with 'test_') or incorrect test file naming conventions.\",\n      \"location\": \"logic_bug.py\"\n    }\n  ],\n  \"message\": \"No tests were found to run, indicating a problem with test discovery or structure.\"\n}\n```",
+            "decision": "PASS_TO_FIXER",
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "pytest_returncode": 5,
+            "pytest_output": "\nno tests ran in 0.02s\n\n"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "15289822-f05f-49c2-81b1-a794c5a2103f",
+        "timestamp": "2026-02-28T22:32:27.484623",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "341990be-2854-4141-be08-d6252fd29c41",
+        "timestamp": "2026-02-28T22:32:27.503722",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 201 characters from logic_bug.py",
+            "file_size_chars": 201,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n (int): The starting number for the countdown.\n    \"..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "fc013a51-ddf7-4884-8d6b-673f9c7638f9",
+        "timestamp": "2026-02-28T22:32:40.655078",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "logic_bug.py",
+            "input_prompt": "Tu es un expert Python et auditeur de code.\n\n📋 FICHIER : logic_bug.py\n\n🎯 MISSION :\nAnalyse ce code et détecte TOUS les problèmes. Ne JAMAIS inventer de bugs inexistants.\n\n🐛 TYPES DE PROBLÈMES À DÉTECTER :\n\nCRITICAL :\n- Variables non définies\n- Imports manquants\n- Syntaxe invalide\n\nHIGH :\n- Division par zéro\n- Index hors limites\n- Opérations sur None\n- Clés dictionnaire inexistantes\n- Fichiers inexistants\n\nMEDIUM :\n- Docstrings manquantes\n- Pas de type hints\n- Nommage non descriptif\n\nLOW :\n- Violations PEP8 (espaces, longueur ligne)\n- Imports désordonnés\n\n📝 CODE À ANALYSER :\n```python\ndef count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n (int): The starting number for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1\n```\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure exacte :\n\n{\"file\":\"logic_bug.py\",\"total_issues\":X,\"issues\":[{\"line\":N,\"type\":\"...\",\"severity\":\"...\",\"description\":\"...\",\"suggestion\":\"...\"}]}\n\nExemple :\n{\"file\":\"test.py\",\"total_issues\":2,\"issues\":[{\"line\":5,\"type\":\"undefined_variable\",\"severity\":\"HIGH\",\"description\":\"Variable 'x' not defined\",\"suggestion\":\"Define 'x' before use\"},{\"line\":10,\"type\":\"missing_docstring\",\"severity\":\"MEDIUM\",\"description\":\"Function lacks docstring\",\"suggestion\":\"Add docstring with Args/Returns\"}]}\n\nSi aucun bug : {\"file\":\"logic_bug.py\",\"total_issues\":0,\"issues\":[]}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\"file\":\"logic_bug.py\",\"total_issues\":0,\"issues\":[]}\n```",
+            "bugs_found": 0,
+            "code_lines": 9
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f253b2ad-374b-4e45-be23-d6e63505406e",
+        "timestamp": "2026-02-28T22:32:40.747417",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\logic_bug.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "8bb34935-eace-4343-8720-170d38b706fe",
+        "timestamp": "2026-02-28T22:32:40.807545",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\logic_bug.py",
+            "output_response": "Successfully read 201 characters from logic_bug.py",
+            "file_size_chars": 201,
+            "file_name": "logic_bug.py",
+            "content_preview": "def count_down(n: int):\n    \"\"\"Counts down from n to 1, printing each number.\n\n    Args:\n        n (int): The starting number for the countdown.\n    \"..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "5c78e031-88eb-4ee9-b9ab-34e3df3b71b2",
+        "timestamp": "2026-02-28T22:32:40.852431",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "file_tested": "logic_bug.py",
+            "input_prompt": "Validation sans tests unitaires",
+            "output_response": "{\"decision\": \"VALIDATE\", \"passed\": 0, \"failed\": 0, \"message\": \"Code propre, syntaxe valide, aucun bug d\\u00e9tect\\u00e9\", \"validation_method\": \"audit_only\"}",
+            "decision": "VALIDATE",
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "bugs_in_audit": 0,
+            "validation_method": "audit_only"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "96c2b06c-980d-4ae4-95a7-a68aa452c1ed",
+        "timestamp": "2026-02-28T22:32:40.993714",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "graph_execution_complete",
+            "input_prompt": "LangGraph workflow completed for logic_bug.py",
+            "output_response": "Graph execution finished. Status: VALIDATED, Iterations: 20",
+            "file_name": "logic_bug.py",
+            "iterations_executed": 20,
+            "final_status": "VALIDATED",
+            "bugs_found": 48,
+            "bugs_fixed": 48,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "812f6299-21da-4123-95ef-88b0cc092eb4",
+        "timestamp": "2026-02-28T22:32:41.040485",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_validated",
+            "input_prompt": "File logic_bug.py successfully validated",
+            "output_response": "Validation complete after 20 iterations. 48 bugs fixed.",
+            "file_name": "logic_bug.py",
+            "iterations": 20,
+            "bugs_found": 48,
+            "bugs_fixed": 48,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "73b0af5a-fe16-4db4-8b86-7d915dc99f98",
+        "timestamp": "2026-02-28T22:32:41.093142",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_processing_complete",
+            "file": "logic_bug.py",
+            "input_prompt": "Completed processing file: logic_bug.py",
+            "output_response": "File processing finished. Status: VALIDATED, Iterations: 20, Bugs found: 48, Bugs fixed: 48",
+            "file_path": "./sandbox/hidden_dataset\\logic_bug.py",
+            "iterations": 20,
+            "bugs_found": 48,
+            "bugs_fixed": 48,
+            "final_status": "VALIDATED",
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "78b58180-635a-4ec4-a225-11dacfecf171",
+        "timestamp": "2026-02-28T22:32:41.140706",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_processing_start",
+            "input_prompt": "Starting workflow for file: messy_code.py",
+            "output_response": "Initializing LangGraph workflow for messy_code.py (max 10 iterations)",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "file_name": "messy_code.py",
+            "max_iterations": 10,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e737c218-4c59-4273-b38b-3b1bd4c57815",
+        "timestamp": "2026-02-28T22:32:41.189341",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "43838810-e5d1-49ef-8b3f-a81654705b14",
+        "timestamp": "2026-02-28T22:32:41.235607",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 148 characters from messy_code.py",
+            "file_size_chars": 148,
+            "file_name": "messy_code.py",
+            "content_preview": "x = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e1944ea9-3b96-450e-9513-109157b525ca",
+        "timestamp": "2026-02-28T22:32:52.457630",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b075822e-ca41-484b-900d-ca3629e464f7",
+        "timestamp": "2026-02-28T22:32:52.461621",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 148 characters from messy_code.py",
+            "file_size_chars": 148,
+            "file_name": "messy_code.py",
+            "content_preview": "x = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "49c6c34f-c8be-4319-8b25-65207c3ebbd3",
+        "timestamp": "2026-02-28T22:33:18.925612",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "messy_code.py",
+            "input_prompt": "Tu es un expert Python et auditeur de code.\n\n📋 FICHIER : messy_code.py\n\n🎯 MISSION :\nAnalyse ce code et détecte TOUS les problèmes. Ne JAMAIS inventer de bugs inexistants.\n\n🐛 TYPES DE PROBLÈMES À DÉTECTER :\n\nCRITICAL :\n- Variables non définies\n- Imports manquants\n- Syntaxe invalide\n\nHIGH :\n- Division par zéro\n- Index hors limites\n- Opérations sur None\n- Clés dictionnaire inexistantes\n- Fichiers inexistants\n\nMEDIUM :\n- Docstrings manquantes\n- Pas de type hints\n- Nommage non descriptif\n\nLOW :\n- Violations PEP8 (espaces, longueur ligne)\n- Imports désordonnés\n\n📝 CODE À ANALYSER :\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure exacte :\n\n{\"file\":\"messy_code.py\",\"total_issues\":X,\"issues\":[{\"line\":N,\"type\":\"...\",\"severity\":\"...\",\"description\":\"...\",\"suggestion\":\"...\"}]}\n\nExemple :\n{\"file\":\"test.py\",\"total_issues\":2,\"issues\":[{\"line\":5,\"type\":\"undefined_variable\",\"severity\":\"HIGH\",\"description\":\"Variable 'x' not defined\",\"suggestion\":\"Define 'x' before use\"},{\"line\":10,\"type\":\"missing_docstring\",\"severity\":\"MEDIUM\",\"description\":\"Function lacks docstring\",\"suggestion\":\"Add docstring with Args/Returns\"}]}\n\nSi aucun bug : {\"file\":\"messy_code.py\",\"total_issues\":0,\"issues\":[]}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"file\": \"messy_code.py\",\n  \"total_issues\": 6,\n  \"issues\": [\n    {\n      \"line\": 1,\n      \"type\": \"non_descriptive_naming\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Variable name 'x' is not descriptive.\",\n      \"suggestion\": \"Choose a more descriptive name that clearly indicates the variable's purpose.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"no_type_hints\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Missing type hint for variable 'x'.\",\n      \"suggestion\": \"Add a type hint (e.g., `x: int = 10`) to improve code clarity and enable static analysis.\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"pep8_violation\",\n      \"severity\": \"LOW\",\n      \"description\": \"Expected 2 blank lines before top-level function 'f', found 0 (PEP8 E302).\",\n      \"suggestion\": \"Add 2 blank lines before the function definition for better readability and PEP8 compliance.\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"non_descriptive_naming\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function name 'f' is not descriptive.\",\n      \"suggestion\": \"Choose a more descriptive name that reflects the function's purpose (e.g., `is_value_in_range`, `check_bounds`).\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"missing_docstring\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function 'f' lacks a docstring.\",\n      \"suggestion\": \"Add a docstring explaining the function's purpose, arguments, and return value.\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"no_type_hints\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Missing type hints for parameter 'z' and the return value of function 'f'.\",\n      \"suggestion\": \"Add type hints (e.g., `def f(z: int) -> bool:`) to improve code clarity and enable static analysis.\"\n    }\n  ]\n}\n```",
+            "bugs_found": 6,
+            "code_lines": 7
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1963b95b-5fdb-499f-9838-37f4dd43d95b",
+        "timestamp": "2026-02-28T22:33:18.955311",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "4348460b-f52a-4901-b574-c57fc2713433",
+        "timestamp": "2026-02-28T22:33:18.976204",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 148 characters from messy_code.py",
+            "file_size_chars": 148,
+            "file_name": "messy_code.py",
+            "content_preview": "x = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "916e8011-7fc7-4fb9-b70f-fc80f1f4adb8",
+        "timestamp": "2026-02-28T22:33:33.206504",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "fbe9becf-2092-45d8-98d9-843df279cb70",
+        "timestamp": "2026-02-28T22:33:33.210489",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "FIX",
+        "details": {
+            "operation": "write_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Writing content to file: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully wrote 335 characters to messy_code.py",
+            "content_size_chars": 335,
+            "file_name": "messy_code.py",
+            "content_preview": "DEFAULT_THRESHOLD: int = 10\n\n\ndef is_value_in_positive_range(value: int) -> bool:\n    \"\"\"Checks if a given value is strictly positive and less than 10..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "322a4843-c5ca-4e60-a0e4-5ffd2386d8ac",
+        "timestamp": "2026-02-28T22:33:33.225131",
+        "agent": "Fixer_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "messy_code.py",
+            "input_prompt": "Tu es un expert Python chargé de corriger les bugs détectés.\n\n📋 FICHIER : messy_code.py\n\n🐛 RAPPORT D'AUDIT :\n{\n  \"file\": \"messy_code.py\",\n  \"total_issues\": 6,\n  \"issues\": [\n    {\n      \"line\": 1,\n      \"type\": \"non_descriptive_naming\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Variable name 'x' is not descriptive.\",\n      \"suggestion\": \"Choose a more descriptive name that clearly indicates the variable's purpose.\"\n    },\n    {\n      \"line\": 1,\n      \"type\": \"no_type_hints\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Missing type hint for variable 'x'.\",\n      \"suggestion\": \"Add a type hint (e.g., `x: int = 10`) to improve code clarity and enable static analysis.\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"pep8_violation\",\n      \"severity\": \"LOW\",\n      \"description\": \"Expected 2 blank lines before top-level function 'f', found 0 (PEP8 E302).\",\n      \"suggestion\": \"Add 2 blank lines before the function definition for better readability and PEP8 compliance.\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"non_descriptive_naming\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function name 'f' is not descriptive.\",\n      \"suggestion\": \"Choose a more descriptive name that reflects the function's purpose (e.g., `is_value_in_range`, `check_bounds`).\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"missing_docstring\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Function 'f' lacks a docstring.\",\n      \"suggestion\": \"Add a docstring explaining the function's purpose, arguments, and return value.\"\n    },\n    {\n      \"line\": 3,\n      \"type\": \"no_type_hints\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"Missing type hints for parameter 'z' and the return value of function 'f'.\",\n      \"suggestion\": \"Add type hints (e.g., `def f(z: int) -> bool:`) to improve code clarity and enable static analysis.\"\n    }\n  ]\n}\n\n📝 CODE ORIGINAL :\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\n🎯 TA MISSION :\nCorrige TOUS les bugs listés dans le rapport.\n\n✅ RÈGLES :\n- Conserve la structure et logique originale\n- Ajoute docstrings Google format (Args, Returns)\n- Gère les cas limites (division par zéro, listes vides, None)\n- Respecte PEP8\n- Ne réécris pas complètement le code\n\n❌ INTERDICTIONS :\n- Ajouter des fonctionnalités non demandées\n- Changer la logique métier\n- Inclure des explications ou commentaires (sauf docstrings)\n\n📤 FORMAT DE SORTIE :\nCode Python pur UNIQUEMENT. Pas de :\n- Balises markdown (```python)\n- Explications textuelles\n- Commentaires de changements\n\nCommence directement par le code corrigé.\n",
+            "output_response": "DEFAULT_THRESHOLD: int = 10\n\n\ndef is_value_in_positive_range(value: int) -> bool:\n    \"\"\"Checks if a given value is strictly positive and less than 100.\n\n    Args:\n        value: The integer value to check.\n\n    Returns:\n        True if the value is greater than 0 and less than 100, False otherwise.\n    \"\"\"\n    return 0 < value < 100",
+            "bugs_fixed": 6,
+            "original_lines": 7,
+            "fixed_lines": 13,
+            "syntax_valid": true
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "746f0f52-58a5-4a5f-ac67-fbd72360795b",
+        "timestamp": "2026-02-28T22:33:33.244171",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "fb69f8fc-34ce-45bc-8da3-c0ea11aec192",
+        "timestamp": "2026-02-28T22:33:33.276158",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 335 characters from messy_code.py",
+            "file_size_chars": 335,
+            "file_name": "messy_code.py",
+            "content_preview": "DEFAULT_THRESHOLD: int = 10\n\n\ndef is_value_in_positive_range(value: int) -> bool:\n    \"\"\"Checks if a given value is strictly positive and less than 10..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "7269b1a9-3fa3-4f31-86c2-8cb344df3e7c",
+        "timestamp": "2026-02-28T22:33:33.992198",
+        "agent": "Pytest_Tool",
+        "model": "pytest",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "unit_testing",
+            "test_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Running tests in: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Tests completed: 0 passed, 0 failed",
+            "passed_count": 0,
+            "failed_count": 0,
+            "returncode": 5,
+            "output_preview": "\nno tests ran in 0.02s\n"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "df977b14-a4f0-4d0e-b725-4639f50a73ba",
+        "timestamp": "2026-02-28T22:33:50.148069",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "file_tested": "messy_code.py",
+            "input_prompt": "Tu es un expert en tests Python. Analyse les résultats pytest et décide de la suite.\n\n📋 FICHIER TESTÉ : messy_code.py\n\n📊 SORTIE PYTEST :\n```\n\nno tests ran in 0.02s\n\n\n```\n\n🎯 TA MISSION :\nInterpréter les résultats et prendre une décision.\n\n✅ DÉCISION \"VALIDATE\" SI :\n- Tous les tests passent (100%)\n- Aucune erreur d'exécution\n\n❌ DÉCISION \"PASS_TO_FIXER\" SI :\n- Au moins 1 test échoue\n- Erreur de collection\n- Aucun test trouvé\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure :\n\nSuccès :\n{\"decision\":\"VALIDATE\",\"tests_run\":X,\"tests_passed\":X,\"tests_failed\":0,\"errors\":[],\"message\":\"All tests passed\"}\n\nÉchec :\n{\"decision\":\"PASS_TO_FIXER\",\"tests_run\":X,\"tests_passed\":Y,\"tests_failed\":Z,\"errors\":[{\"test_name\":\"...\",\"error_type\":\"...\",\"error_message\":\"...\",\"location\":\"...\"}],\"message\":\"Z tests failed\"}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"decision\": \"PASS_TO_FIXER\",\n  \"tests_run\": 0,\n  \"tests_passed\": 0,\n  \"tests_failed\": 0,\n  \"errors\": [],\n  \"message\": \"No tests were found or ran.\"\n}\n```",
+            "decision": "PASS_TO_FIXER",
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "pytest_returncode": 5,
+            "pytest_output": "\nno tests ran in 0.02s\n\n"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "c64eb0dc-fff9-42c8-90c9-c751f3215649",
+        "timestamp": "2026-02-28T22:33:50.185061",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "6f78e0ef-0579-4055-bc58-1b8759b6948e",
+        "timestamp": "2026-02-28T22:33:50.218846",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 335 characters from messy_code.py",
+            "file_size_chars": 335,
+            "file_name": "messy_code.py",
+            "content_preview": "DEFAULT_THRESHOLD: int = 10\n\n\ndef is_value_in_positive_range(value: int) -> bool:\n    \"\"\"Checks if a given value is strictly positive and less than 10..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "bee70c02-61b8-4b41-bcc0-378c1606f9c7",
+        "timestamp": "2026-02-28T22:34:00.662443",
+        "agent": "Auditor_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "messy_code.py",
+            "input_prompt": "Tu es un expert Python et auditeur de code.\n\n📋 FICHIER : messy_code.py\n\n🎯 MISSION :\nAnalyse ce code et détecte TOUS les problèmes. Ne JAMAIS inventer de bugs inexistants.\n\n🐛 TYPES DE PROBLÈMES À DÉTECTER :\n\nCRITICAL :\n- Variables non définies\n- Imports manquants\n- Syntaxe invalide\n\nHIGH :\n- Division par zéro\n- Index hors limites\n- Opérations sur None\n- Clés dictionnaire inexistantes\n- Fichiers inexistants\n\nMEDIUM :\n- Docstrings manquantes\n- Pas de type hints\n- Nommage non descriptif\n\nLOW :\n- Violations PEP8 (espaces, longueur ligne)\n- Imports désordonnés\n\n📝 CODE À ANALYSER :\n```python\nDEFAULT_THRESHOLD: int = 10\n\n\ndef is_value_in_positive_range(value: int) -> bool:\n    \"\"\"Checks if a given value is strictly positive and less than 100.\n\n    Args:\n        value: The integer value to check.\n\n    Returns:\n        True if the value is greater than 0 and less than 100, False otherwise.\n    \"\"\"\n    return 0 < value < 100\n```\n\n📤 FORMAT DE SORTIE :\nJSON UNIQUEMENT avec cette structure exacte :\n\n{\"file\":\"messy_code.py\",\"total_issues\":X,\"issues\":[{\"line\":N,\"type\":\"...\",\"severity\":\"...\",\"description\":\"...\",\"suggestion\":\"...\"}]}\n\nExemple :\n{\"file\":\"test.py\",\"total_issues\":2,\"issues\":[{\"line\":5,\"type\":\"undefined_variable\",\"severity\":\"HIGH\",\"description\":\"Variable 'x' not defined\",\"suggestion\":\"Define 'x' before use\"},{\"line\":10,\"type\":\"missing_docstring\",\"severity\":\"MEDIUM\",\"description\":\"Function lacks docstring\",\"suggestion\":\"Add docstring with Args/Returns\"}]}\n\nSi aucun bug : {\"file\":\"messy_code.py\",\"total_issues\":0,\"issues\":[]}\n\nPas de texte avant/après le JSON.\n",
+            "output_response": "```json\n{\n  \"file\": \"messy_code.py\",\n  \"total_issues\": 0,\n  \"issues\": []\n}\n```",
+            "bugs_found": 0,
+            "code_lines": 13
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "4e62fadd-c0b2-4d4f-954b-059ea5de6083",
+        "timestamp": "2026-02-28T22:34:00.766422",
+        "agent": "Security_Check",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "sandbox_validation",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Validating if path is inside sandbox: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Path is SAFE (inside sandbox)",
+            "is_safe": true,
+            "absolute_path": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox\\hidden_dataset\\messy_code.py",
+            "sandbox_root": "C:\\Users\\TRETEC\\Documents\\IGL\\refactoring-swarm-template\\Refactoring-Swarm-Equipe-17\\sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3154ce4a-18f5-4d77-84b4-c25a1fa9c617",
+        "timestamp": "2026-02-28T22:34:00.829871",
+        "agent": "FileSystem_Tool",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "read_file",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "input_prompt": "Reading file content from: ./sandbox/hidden_dataset\\messy_code.py",
+            "output_response": "Successfully read 335 characters from messy_code.py",
+            "file_size_chars": 335,
+            "file_name": "messy_code.py",
+            "content_preview": "DEFAULT_THRESHOLD: int = 10\n\n\ndef is_value_in_positive_range(value: int) -> bool:\n    \"\"\"Checks if a given value is strictly positive and less than 10..."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ca049ca0-ee86-42b7-8d28-a00877465500",
+        "timestamp": "2026-02-28T22:34:00.884529",
+        "agent": "Judge_Agent",
+        "model": "gemini-2.5-flash",
+        "action": "DEBUG",
+        "details": {
+            "file_tested": "messy_code.py",
+            "input_prompt": "Validation sans tests unitaires",
+            "output_response": "{\"decision\": \"VALIDATE\", \"passed\": 0, \"failed\": 0, \"message\": \"Code propre, syntaxe valide, aucun bug d\\u00e9tect\\u00e9\", \"validation_method\": \"audit_only\"}",
+            "decision": "VALIDATE",
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "bugs_in_audit": 0,
+            "validation_method": "audit_only"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "0824e6b6-a41e-4b8f-8d7e-97319ed80d41",
+        "timestamp": "2026-02-28T22:34:01.049383",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "graph_execution_complete",
+            "input_prompt": "LangGraph workflow completed for messy_code.py",
+            "output_response": "Graph execution finished. Status: VALIDATED, Iterations: 20",
+            "file_name": "messy_code.py",
+            "iterations_executed": 20,
+            "final_status": "VALIDATED",
+            "bugs_found": 96,
+            "bugs_fixed": 96,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b74571f2-6c2d-4f14-a075-ccf94c23c088",
+        "timestamp": "2026-02-28T22:34:01.103535",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_validated",
+            "input_prompt": "File messy_code.py successfully validated",
+            "output_response": "Validation complete after 20 iterations. 96 bugs fixed.",
+            "file_name": "messy_code.py",
+            "iterations": 20,
+            "bugs_found": 96,
+            "bugs_fixed": 96,
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a03a592d-d9e9-4b10-80c3-dc2e973ee764",
+        "timestamp": "2026-02-28T22:34:01.168075",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "ANALYSIS",
+        "details": {
+            "operation": "file_processing_complete",
+            "file": "messy_code.py",
+            "input_prompt": "Completed processing file: messy_code.py",
+            "output_response": "File processing finished. Status: VALIDATED, Iterations: 20, Bugs found: 96, Bugs fixed: 96",
+            "file_path": "./sandbox/hidden_dataset\\messy_code.py",
+            "iterations": 20,
+            "bugs_found": 96,
+            "bugs_fixed": 96,
+            "final_status": "VALIDATED",
+            "workflow_engine": "LangGraph_v2.1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "7d989e00-4a5a-4fe8-b0f0-cdc4c40e3c1b",
+        "timestamp": "2026-02-28T22:34:01.229607",
+        "agent": "Orchestrator",
+        "model": "N/A",
+        "action": "GENERATION",
+        "details": {
+            "operation": "workflow_complete",
+            "input_prompt": "Completed refactoring workflow for 3 files",
+            "output_response": "Workflow finished. Validated: 3, Failed: 0, Success rate: 100.0%",
+            "total_files": 3,
+            "files_validated": 3,
+            "files_failed": 0,
+            "success_rate": 100.0,
+            "workflow_engine": "LangGraph_v2.1",
+            "summary": {
+                "total_files": 3,
+                "files_validated": 3,
+                "files_failed": 0,
+                "success_rate": 100.0,
+                "workflow_engine": "LangGraph_v2.1",
+                "files": [
+                    {
+                        "file_name": "bad_syntax.py",
+                        "status": "VALIDATED",
+                        "iterations": 20,
+                        "bugs_found": 48,
+                        "bugs_fixed": 48
+                    },
+                    {
+                        "file_name": "logic_bug.py",
+                        "status": "VALIDATED",
+                        "iterations": 20,
+                        "bugs_found": 48,
+                        "bugs_fixed": 48
+                    },
+                    {
+                        "file_name": "messy_code.py",
+                        "status": "VALIDATED",
+                        "iterations": 20,
+                        "bugs_found": 96,
+                        "bugs_fixed": 96
+                    }
+                ]
+            }
+        },
+        "status": "SUCCESS"
+    }
+]

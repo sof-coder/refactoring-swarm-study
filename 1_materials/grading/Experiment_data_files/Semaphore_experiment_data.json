@@ -1,0 +1,148 @@
+[
+    {
+        "id": "97f8ed9c-fe93-452d-85cc-a80c8b544825",
+        "timestamp": "2026-02-28T23:31:13.611229",
+        "agent": "Auditor",
+        "model": "static_analysis",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_analyzed": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/bad_syntax.py",
+            "input_prompt": "Static analysis of /home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/bad_syntax.py",
+            "output_response": "Error analyzing /home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/bad_syntax.py: 'total_lines'",
+            "error": "'total_lines'"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "aff6e6d0-d2aa-4ed7-89d0-7e105df30b83",
+        "timestamp": "2026-02-28T23:31:14.540567",
+        "agent": "Auditor",
+        "model": "static_analysis+pylint",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_analyzed": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/logic_bug.py",
+            "input_prompt": "Static analysis of logic_bug.py",
+            "output_response": "============================================================\nCODE ANALYSIS REPORT: logic_bug.py\n============================================================\n\n📝 SYNTAX CHECK:\n  ✅ No syntax errors\n\n📊 CODE METRICS:\n  Total lines: 4\n  Code lines: 4\n  Comment lines: 0\n  Blank lines: 0\n  Docstring lines: 0\n\n🔄 COMPLEXITY ANALYSIS:\n  Overall complexity: 2\n  Functions: 1\n  Classes: 0\n  High complexity functions:\n\n🎨 STYLE ISSUES: 0\n  ✅ No style issues found\n\n🔒 SECURITY ISSUES: 0\n  ✅ No security issues found\n\n============================================================",
+            "quality_score": 9.9,
+            "issues_found": 1,
+            "pylint_summary": "Your code has been rated at 2.50/10"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f6073b11-01d9-4825-a036-f3de97377c1a",
+        "timestamp": "2026-02-28T23:31:15.665425",
+        "agent": "Fixer",
+        "model": "llama-3.3-70b-versatile",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/logic_bug.py",
+            "input_prompt": "Fix the following Python code based on the audit report.\n\nFILE: logic_bug.py\nCURRENT QUALITY SCORE: 9.9/10\n\nISSUES TO FIX:\n1. [MINOR] documentation (Line 1): Missing docstring in 'count_down'\n\nAUDIT SUMMARY:\nStatic analysis: 1 issues found. Pylint: Your code has been rated at 2.50/10. Estimated score: 9.9/10\n\nORIGINAL CODE:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nREQUIREMENTS:\n1. Fix ALL listed issues\n2. Add proper docstrings (Google style) for all functions and classes\n3. Use snake_case for functions and variables\n4. Improve code readability\n5. Ensure code is syntactically correct\n6. Return the COMPLETE corrected code\n\nOUTPUT FORMAT:\nReturn ONLY the fixed Python code wrapped in ```python``` code blocks.\nDo NOT include any explanations or comments about what you changed.\n",
+            "output_response": "```python\ndef count_down(n):\n    \"\"\"\n    Counts down from a given number to 1.\n\n    Args:\n        n (int): The number to start counting down from.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1\n```",
+            "issues_addressed": 1,
+            "original_score": 9.9,
+            "code_length_before": 106,
+            "code_length_after": 220
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "42fc045e-a9c9-4de8-8e7d-147643ecc563",
+        "timestamp": "2026-02-28T23:31:21.426724",
+        "agent": "Judge",
+        "model": "llama-3.3-70b-versatile",
+        "action": "CODE_GEN",
+        "details": {
+            "file_tested": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/logic_bug.py",
+            "test_file": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/test_logic_bug.py",
+            "input_prompt": "You are a test generation expert. Generate comprehensive pytest unit tests.\n\nCRITICAL INSTRUCTIONS:\n1. Analyze the code and understand what each function/class SHOULD do based on:\n   - Function/method names (semantics)\n   - Parameter names and types\n   - Return value expectations\n   - Business logic inferred from context\n\n2. Generate tests that validate CORRECT behavior, NOT current buggy behavior.\n3. Include edge cases (empty inputs, zero, negative numbers, boundary values).\n4. Test ALL public functions and classes in the module.\n5. Use ONLY pytest-style functions (def test_*), NOT unittest.TestCase.\n6. DO NOT use unittest at all.\n\nCRITICAL - MATCH THE CODE STRUCTURE EXACTLY:\n- If the code has standalone functions like \"def add(x, y):\", import them directly:\n  from logic_bug import add\n- If the code has classes, instantiate them properly:\n  obj = MyClass(); result = obj.method()\n- DO NOT convert standalone functions into class methods\n\nCODE TO TEST (file: logic_bug.py):\n```python\ndef count_down(n):\n    \"\"\"\n    Counts down from a given number to 1.\n\n    Args:\n        n (int): The number to start counting down from.\n\n    Returns:\n        None\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1\n```\n\nREQUIRED OUTPUT FORMAT - return ONLY this, no explanations:\n```python\nimport pytest\nfrom logic_bug import <list all functions and classes here>\n\ndef test_function_normal_case():\n    assert function(input) == expected_correct_output\n\ndef test_function_edge_case():\n    assert function(edge_input) == expected_correct_output\n\n# ... more tests covering all functions\n```\n\nGenerate the complete test file now:\n",
+            "output_response": "import pytest\nfrom logic_bug import count_down\nimport io\nimport sys\n\ndef test_count_down_normal_case(capsys):\n    count_down(5)\n    captured = capsys.readouterr()\n    assert captured.out == \"5\\n4\\n3\\n2\\n1\\n\"\n\ndef test_count_down_edge_case_zero(capsys):\n    count_down(0)\n    captured = capsys.readouterr()\n    assert captured.out == \"\"\n\ndef test_count_down_edge_case_negative(capsys):\n    count_down(-5)\n    captured = capsys.readouterr()\n    assert captured.out == \"\"\n\ndef test_count_down_edge_case_one(capsys):\n    count_down(1)\n    captured = capsys.readouterr()\n    assert captured.out == \"1\\n\"\n\ndef test_count_down_large_input(capsys):\n    count_down(10)\n    captured = capsys.readouterr()\n    assert captured.out == \"10\\n9\\n8\\n7\\n6\\n5\\n4\\n3\\n2\\n1\\n\"",
+            "test_count": 5
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "0d9b2d5d-d10c-4a30-b1ed-dd553df361ae",
+        "timestamp": "2026-02-28T23:31:21.889339",
+        "agent": "Judge",
+        "model": "pytest",
+        "action": "DEBUG",
+        "details": {
+            "file_validated": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/logic_bug.py",
+            "test_file": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/test_logic_bug.py",
+            "input_prompt": "Running tests for /home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/logic_bug.py",
+            "output_response": "✅ All 5 tests passed!",
+            "passed": 5,
+            "failed": 0,
+            "total": 5,
+            "exit_code": 0
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "6cbf13b6-a34a-4739-a941-0293cd0af6cc",
+        "timestamp": "2026-02-28T23:31:22.709722",
+        "agent": "Auditor",
+        "model": "static_analysis+pylint",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "file_analyzed": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/messy_code.py",
+            "input_prompt": "Static analysis of messy_code.py",
+            "output_response": "============================================================\nCODE ANALYSIS REPORT: messy_code.py\n============================================================\n\n📝 SYNTAX CHECK:\n  ✅ No syntax errors\n\n📊 CODE METRICS:\n  Total lines: 7\n  Code lines: 6\n  Comment lines: 1\n  Blank lines: 0\n  Docstring lines: 0\n\n🔄 COMPLEXITY ANALYSIS:\n  Overall complexity: 3\n  Functions: 1\n  Classes: 0\n  High complexity functions:\n\n🎨 STYLE ISSUES: 0\n  ✅ No style issues found\n\n🔒 SECURITY ISSUES: 0\n  ✅ No security issues found\n\n============================================================",
+            "quality_score": 9.85,
+            "issues_found": 1,
+            "pylint_summary": "Your code has been rated at 3.33/10"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "64f2a7de-c8d1-49ec-91ad-044549c1eab5",
+        "timestamp": "2026-02-28T23:31:23.211268",
+        "agent": "Fixer",
+        "model": "llama-3.3-70b-versatile",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/messy_code.py",
+            "input_prompt": "Fix the following Python code based on the audit report.\n\nFILE: messy_code.py\nCURRENT QUALITY SCORE: 9.85/10\n\nISSUES TO FIX:\n1. [MINOR] documentation (Line 3): Missing docstring in 'f'\n\nAUDIT SUMMARY:\nStatic analysis: 1 issues found. Pylint: Your code has been rated at 3.33/10. Estimated score: 9.8/10\n\nORIGINAL CODE:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nREQUIREMENTS:\n1. Fix ALL listed issues\n2. Add proper docstrings (Google style) for all functions and classes\n3. Use snake_case for functions and variables\n4. Improve code readability\n5. Ensure code is syntactically correct\n6. Return the COMPLETE corrected code\n\nOUTPUT FORMAT:\nReturn ONLY the fixed Python code wrapped in ```python``` code blocks.\nDo NOT include any explanations or comments about what you changed.\n",
+            "output_response": "```python\nvariable_name = 10\n\ndef is_positive_and_less_than_hundred(input_value: int) -> bool:\n    \"\"\"\n    Checks if the input value is positive and less than 100.\n\n    Args:\n        input_value (int): The value to be checked.\n\n    Returns:\n        bool: True if the input value is positive and less than 100, False otherwise.\n    \"\"\"\n    if input_value > 0 and input_value < 100:\n        return True\n    return False\n```",
+            "issues_addressed": 1,
+            "original_score": 9.85,
+            "code_length_before": 148,
+            "code_length_after": 407
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "c517dc98-8e64-40c6-8111-f8577084fd36",
+        "timestamp": "2026-02-28T23:31:28.124296",
+        "agent": "Judge",
+        "model": "llama-3.3-70b-versatile",
+        "action": "CODE_GEN",
+        "details": {
+            "file_tested": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/messy_code.py",
+            "test_file": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/test_messy_code.py",
+            "input_prompt": "You are a test generation expert. Generate comprehensive pytest unit tests.\n\nCRITICAL INSTRUCTIONS:\n1. Analyze the code and understand what each function/class SHOULD do based on:\n   - Function/method names (semantics)\n   - Parameter names and types\n   - Return value expectations\n   - Business logic inferred from context\n\n2. Generate tests that validate CORRECT behavior, NOT current buggy behavior.\n3. Include edge cases (empty inputs, zero, negative numbers, boundary values).\n4. Test ALL public functions and classes in the module.\n5. Use ONLY pytest-style functions (def test_*), NOT unittest.TestCase.\n6. DO NOT use unittest at all.\n\nCRITICAL - MATCH THE CODE STRUCTURE EXACTLY:\n- If the code has standalone functions like \"def add(x, y):\", import them directly:\n  from messy_code import add\n- If the code has classes, instantiate them properly:\n  obj = MyClass(); result = obj.method()\n- DO NOT convert standalone functions into class methods\n\nCODE TO TEST (file: messy_code.py):\n```python\nvariable_name = 10\n\ndef is_positive_and_less_than_hundred(input_value: int) -> bool:\n    \"\"\"\n    Checks if the input value is positive and less than 100.\n\n    Args:\n        input_value (int): The value to be checked.\n\n    Returns:\n        bool: True if the input value is positive and less than 100, False otherwise.\n    \"\"\"\n    if input_value > 0 and input_value < 100:\n        return True\n    return False\n```\n\nREQUIRED OUTPUT FORMAT - return ONLY this, no explanations:\n```python\nimport pytest\nfrom messy_code import <list all functions and classes here>\n\ndef test_function_normal_case():\n    assert function(input) == expected_correct_output\n\ndef test_function_edge_case():\n    assert function(edge_input) == expected_correct_output\n\n# ... more tests covering all functions\n```\n\nGenerate the complete test file now:\n",
+            "output_response": "import pytest\nfrom messy_code import is_positive_and_less_than_hundred\n\ndef test_is_positive_and_less_than_hundred_normal_case():\n    assert is_positive_and_less_than_hundred(50) == True\n\ndef test_is_positive_and_less_than_hundred_zero():\n    assert is_positive_and_less_than_hundred(0) == False\n\ndef test_is_positive_and_less_than_hundred_negative():\n    assert is_positive_and_less_than_hundred(-10) == False\n\ndef test_is_positive_and_less_than_hundred_hundred():\n    assert is_positive_and_less_than_hundred(100) == False\n\ndef test_is_positive_and_less_than_hundred_large_number():\n    assert is_positive_and_less_than_hundred(1000) == False\n\ndef test_is_positive_and_less_than_hundred_positive_boundary():\n    assert is_positive_and_less_than_hundred(1) == True\n\ndef test_is_positive_and_less_than_hundred_negative_boundary():\n    assert is_positive_and_less_than_hundred(-1) == False\n\ndef test_is_positive_and_less_than_hundred_input_type():\n    with pytest.raises(TypeError):\n        is_positive_and_less_than_hundred(\"10\")\n\ndef test_is_positive_and_less_than_hundred_input_none():\n    with pytest.raises(TypeError):\n        is_positive_and_less_than_hundred(None)",
+            "test_count": 9
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b257e7dd-aa8e-4019-a1f6-2cb103903c20",
+        "timestamp": "2026-02-28T23:31:28.557876",
+        "agent": "Judge",
+        "model": "pytest",
+        "action": "DEBUG",
+        "details": {
+            "file_validated": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/messy_code.py",
+            "test_file": "/home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/test_messy_code.py",
+            "input_prompt": "Running tests for /home/rayane/Folder/ESI/IGL/Refactoring-Swarm-Equipe-04/sandbox/hidden_dataset/messy_code.py",
+            "output_response": "✅ All 9 tests passed!",
+            "passed": 9,
+            "failed": 0,
+            "total": 9,
+            "exit_code": 0
+        },
+        "status": "SUCCESS"
+    }
+]

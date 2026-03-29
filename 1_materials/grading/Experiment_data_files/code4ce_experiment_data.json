@@ -1,0 +1,172 @@
+[
+    {
+        "id": "6ae4c9e1-56b1-4347-84b4-46bca0e01aec",
+        "timestamp": "2026-02-28T23:31:26.131762",
+        "agent_name": "System",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "ANALYSIS",
+        "details": {
+            "input_prompt": "Démarrage du Refactoring Swarm sur ./sandbox/hidden_dataset",
+            "output_response": "Initialisation...",
+            "target_dir": "./sandbox/hidden_dataset",
+            "model": "google/gemini-2.0-flash-001"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "06e7921d-5f8a-4a84-b9f8-91236329aac7",
+        "timestamp": "2026-02-28T23:31:31.486697",
+        "agent_name": "Auditor_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py",
+            "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring:\n\nFICHIER: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py\n\nSYNTAXE VALIDE: False\nERREUR DE SYNTAXE: Line 1: expected ':'\n\nCODE:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nprodui un rapport JSON avec les corrections suggested\n",
+            "output_response": "```json\n{\n    \"file_path\": \"/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py\",\n    \"syntax_errors\": [\n        {\n            \"line\": 1,\n            \"description\": \"SyntaxError: expected ':'\",\n            \"fix_suggestion\": \"Add a colon ':' at the end of the function definition.\"\n        }\n    ],\n    \"logic_bugs\": [],\n    \"code_smells\": [],\n    \"overall_score\": 1,\n    \"priority_fixes\": [\n        \"Add colon to function definition\"\n    ]\n}\n```",
+            "syntax_valid": false,
+            "issues_found": 1
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "641b81ab-6b02-40b4-98e0-311cd71239a2",
+        "timestamp": "2026-02-28T23:31:35.261098",
+        "agent_name": "Fixer_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py",
+            "input_prompt": "fichier a corriger: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py\n\noriginal code:\n```python\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n```\n\nrapport daudit:\n\nsyntax errors:\n  - Ligne 1: SyntaxError: expected ':'\n    Suggestion: Add a colon ':' at the end of the function definition.\n\nproduis le code corrige complet et fonctionnel.",
+            "output_response": "```python\ndef calculate_sum(a, b):\n    \"\"\"Calculates the sum of two numbers.\n\n    Args:\n        a: The first number.\n        b: The second number.\n\n    Returns:\n        The sum of a and b.\n    \"\"\"\n    return a + b\n```",
+            "original_lines": 2,
+            "fixed_lines": 11
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b8630f5a-f209-4e89-bd00-8229f0cfe9b9",
+        "timestamp": "2026-02-28T23:31:41.447487",
+        "agent_name": "Tester_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "GENERATION",
+        "details": {
+            "file_tested": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py",
+            "input_prompt": "Génère des tests unitaires pytest pour ce fichier Python:\n\nFICHIER: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/bad_syntax.py\nMODULE: bad_syntax\n\nCODE À TESTER:\n```python\ndef calculate_sum(a, b):\n    \"\"\"Calculates the sum of two numbers.\n\n    Args:\n        a: The first number.\n        b: The second number.\n\n    Returns:\n        The sum of a and b.\n    \"\"\"\n    return a + b\n```\n\nINSTRUCTIONS:\n1. Importe le module avec: from bad_syntax import *\n2. Teste chaque fonction avec des assertions précises\n3. Inclus des tests pour les edge cases\n4. Les tests doivent vérifier le comportement ATTENDU (pas le comportement bugué)\n\nGénère le fichier de test complet.\n",
+            "output_response": "```python\nimport pytest\nfrom bad_syntax import *\n\ndef test_calculate_sum_positive_numbers():\n    assert calculate_sum(2, 3) == 5\n\ndef test_calculate_sum_negative_numbers():\n    assert calculate_sum(-2, -3) == -5\n\ndef test_calculate_sum_mixed_numbers():\n    assert calculate_sum(2, -3) == -1\n\ndef test_calculate_sum_zero():\n    assert calculate_sum(5, 0) == 5\n\ndef test_calculate_sum_large_numbers():\n    assert calculate_sum(1000000, 2000000) == 3000000\n```",
+            "test_file": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/test_bad_syntax.py",
+            "tests_passed": 5,
+            "tests_failed": 0
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b2d074ed-18df-4c33-aeed-c7fbfc9e526e",
+        "timestamp": "2026-02-28T23:31:46.849023",
+        "agent_name": "Auditor_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py",
+            "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring:\n\nFICHIER: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py\n\nSYNTAXE VALIDE: True\n\n\nCODE:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nprodui un rapport JSON avec les corrections suggested\n",
+            "output_response": "```json\n{\n    \"file_path\": \"/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py\",\n    \"syntax_errors\": [],\n    \"logic_bugs\": [\n        {\n            \"line\": 4,\n            \"function\": \"count_down\",\n            \"description\": \"The value of 'n' is incremented instead of decremented, causing an infinite loop.\",\n            \"expected_behavior\": \"The function should print numbers from n down to 1.\",\n            \"fix_suggestion\": \"Change 'n += 1' to 'n -= 1'.\"\n        }\n    ],\n    \"code_smells\": [\n        {\n            \"line\": 1,\n            \"type\": \"docstring\",\n            \"description\": \"The function 'count_down' lacks a docstring explaining its purpose and arguments.\",\n            \"fix_suggestion\": \"Add a docstring to the function explaining its purpose and arguments (e.g., \\\"Counts down from n to 1.\\\").\"\n        }\n    ],\n    \"overall_score\": 6,\n    \"priority_fixes\": [\n        \"Change 'n += 1' to 'n -= 1'.\"\n    ]\n}\n```",
+            "syntax_valid": true,
+            "issues_found": 2
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "6f057a60-7d3d-4682-b04b-5c3a80e8d631",
+        "timestamp": "2026-02-28T23:31:49.899301",
+        "agent_name": "Fixer_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py",
+            "input_prompt": "fichier a corriger: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py\n\noriginal code:\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nrapport daudit:\n\nbugs logic:\n  - Ligne 4 (count_down): The value of 'n' is incremented instead of decremented, causing an infinite loop.\n    Comportement attendu: The function should print numbers from n down to 1.\n    Suggestion: Change 'n += 1' to 'n -= 1'.\n\ncode smel:\n  - Ligne 1 (docstring): The function 'count_down' lacks a docstring explaining its purpose and arguments.\n    Suggestion: Add a docstring to the function explaining its purpose and arguments (e.g., \"Counts down from n to 1.\").\n\nproduis le code corrige complet et fonctionnel.",
+            "output_response": "```python\ndef count_down(n):\n    \"\"\"Counts down from n to 1.\n\n    Args:\n        n: The starting number for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1\n```",
+            "original_lines": 4,
+            "fixed_lines": 9
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b82c7a4e-7206-4a3d-ae39-ccb95e3dac5a",
+        "timestamp": "2026-02-28T23:31:56.500332",
+        "agent_name": "Tester_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "GENERATION",
+        "details": {
+            "file_tested": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py",
+            "input_prompt": "Génère des tests unitaires pytest pour ce fichier Python:\n\nFICHIER: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/logic_bug.py\nMODULE: logic_bug\n\nCODE À TESTER:\n```python\ndef count_down(n):\n    \"\"\"Counts down from n to 1.\n\n    Args:\n        n: The starting number for the countdown.\n    \"\"\"\n    while n > 0:\n        print(n)\n        n -= 1\n```\n\nINSTRUCTIONS:\n1. Importe le module avec: from logic_bug import *\n2. Teste chaque fonction avec des assertions précises\n3. Inclus des tests pour les edge cases\n4. Les tests doivent vérifier le comportement ATTENDU (pas le comportement bugué)\n\nGénère le fichier de test complet.\n",
+            "output_response": "```python\nimport pytest\nfrom logic_bug import *\nimport io\nimport sys\n\ndef test_count_down_positive():\n    captured_output = io.StringIO()\n    sys.stdout = captured_output\n    count_down(3)\n    sys.stdout = sys.__stdout__\n    assert captured_output.getvalue() == \"3\\n2\\n1\\n\"\n\ndef test_count_down_one():\n    captured_output = io.StringIO()\n    sys.stdout = captured_output\n    count_down(1)\n    sys.stdout = sys.__stdout__\n    assert captured_output.getvalue() == \"1\\n\"\n\ndef test_count_down_zero():\n    captured_output = io.StringIO()\n    sys.stdout = captured_output\n    count_down(0)\n    sys.stdout = sys.__stdout__\n    assert captured_output.getvalue() == \"\"\n\ndef test_count_down_large_number():\n    captured_output = io.StringIO()\n    sys.stdout = captured_output\n    count_down(5)\n    sys.stdout = sys.__stdout__\n    assert captured_output.getvalue() == \"5\\n4\\n3\\n2\\n1\\n\"\n```",
+            "test_file": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/test_logic_bug.py",
+            "tests_passed": 4,
+            "tests_failed": 0
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "8e3e5a07-10d3-492e-8890-90b8d5eaed3e",
+        "timestamp": "2026-02-28T23:32:12.480039",
+        "agent_name": "Auditor_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "ANALYSIS",
+        "details": {
+            "file_analyzed": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py",
+            "input_prompt": "Analyse ce fichier Python et produis un plan de refactoring:\n\nFICHIER: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py\n\nSYNTAXE VALIDE: True\n\n\nCODE:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nprodui un rapport JSON avec les corrections suggested\n",
+            "output_response": "```json\n{\n    \"file_path\": \"/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py\",\n    \"syntax_errors\": [],\n    \"logic_bugs\": [],\n    \"code_smells\": [\n        {\n            \"line\": 1,\n            \"type\": \"naming\",\n            \"description\": \"Variable 'x' has a non-descriptive name.\",\n            \"fix_suggestion\": \"Rename 'x' to a more descriptive name based on its purpose (e.g., 'threshold', 'initial_value').\"\n        },\n        {\n            \"line\": 3,\n            \"type\": \"naming\",\n            \"description\": \"Function 'f' has a non-descriptive name.\",\n            \"fix_suggestion\": \"Rename 'f' to a more descriptive name based on its purpose (e.g., 'is_within_range', 'validate_value').\"\n        },\n        {\n            \"line\": 3,\n            \"type\": \"docstring\",\n            \"description\": \"Function 'f' lacks a docstring.\",\n            \"fix_suggestion\": \"Add a docstring to explain the function's purpose, arguments, and return value.\"\n        },\n        {\n            \"line\": 4,\n            \"type\": \"other\",\n            \"description\": \"Nested 'if' statements can be simplified.\",\n            \"fix_suggestion\": \"Combine the conditions into a single 'if' statement using 'and'.\"\n        }\n    ],\n    \"overall_score\": 6,\n    \"priority_fixes\": [\n        \"Rename variable 'x'\",\n        \"Rename function 'f'\",\n        \"Add docstring to function 'f'\",\n        \"Simplify nested 'if' statements\"\n    ]\n}\n```",
+            "syntax_valid": true,
+            "issues_found": 4
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "95ff07ab-3513-4849-872a-6ad0e60fe9b3",
+        "timestamp": "2026-02-28T23:32:15.927035",
+        "agent_name": "Fixer_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "FIX",
+        "details": {
+            "file_fixed": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py",
+            "input_prompt": "fichier a corriger: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py\n\noriginal code:\n```python\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n```\n\nrapport daudit:\n\ncode smel:\n  - Ligne 1 (naming): Variable 'x' has a non-descriptive name.\n    Suggestion: Rename 'x' to a more descriptive name based on its purpose (e.g., 'threshold', 'initial_value').\n  - Ligne 3 (naming): Function 'f' has a non-descriptive name.\n    Suggestion: Rename 'f' to a more descriptive name based on its purpose (e.g., 'is_within_range', 'validate_value').\n  - Ligne 3 (docstring): Function 'f' lacks a docstring.\n    Suggestion: Add a docstring to explain the function's purpose, arguments, and return value.\n  - Ligne 4 (other): Nested 'if' statements can be simplified.\n    Suggestion: Combine the conditions into a single 'if' statement using 'and'.\n\nproduis le code corrige complet et fonctionnel.",
+            "output_response": "```python\ndef is_value_within_range(value):\n    \"\"\"Checks if a value is within the range (0, 100).\n\n    Args:\n        value: The value to check.\n\n    Returns:\n        True if the value is greater than 0 and less than 100, False otherwise.\n    \"\"\"\n    return 0 < value < 100\n\n\ninitial_value = 10\n```",
+            "original_lines": 7,
+            "fixed_lines": 13
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9f067814-380c-42af-9ac5-ae428c9d4033",
+        "timestamp": "2026-02-28T23:32:22.958686",
+        "agent_name": "Tester_Agent",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "GENERATION",
+        "details": {
+            "file_tested": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py",
+            "input_prompt": "Génère des tests unitaires pytest pour ce fichier Python:\n\nFICHIER: /home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/messy_code.py\nMODULE: messy_code\n\nCODE À TESTER:\n```python\ndef is_value_within_range(value):\n    \"\"\"Checks if a value is within the range (0, 100).\n\n    Args:\n        value: The value to check.\n\n    Returns:\n        True if the value is greater than 0 and less than 100, False otherwise.\n    \"\"\"\n    return 0 < value < 100\n\n\ninitial_value = 10\n```\n\nINSTRUCTIONS:\n1. Importe le module avec: from messy_code import *\n2. Teste chaque fonction avec des assertions précises\n3. Inclus des tests pour les edge cases\n4. Les tests doivent vérifier le comportement ATTENDU (pas le comportement bugué)\n\nGénère le fichier de test complet.\n",
+            "output_response": "```python\nimport pytest\nfrom messy_code import is_value_within_range\n\ndef test_is_value_within_range_valid():\n    assert is_value_within_range(50) == True\n\ndef test_is_value_within_range_lower_bound():\n    assert is_value_within_range(1) == True\n\ndef test_is_value_within_range_upper_bound():\n    assert is_value_within_range(99) == True\n\ndef test_is_value_within_range_below_lower_bound():\n    assert is_value_within_range(0) == False\n\ndef test_is_value_within_range_above_upper_bound():\n    assert is_value_within_range(100) == False\n\ndef test_is_value_within_range_negative():\n    assert is_value_within_range(-1) == False\n```",
+            "test_file": "/home/badreddine/Desktop/TP-IGL/refarctoring-swarm-llm/sandbox/hidden_dataset/test_messy_code.py",
+            "tests_passed": 6,
+            "tests_failed": 0
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a3d01dde-7455-40c3-9b1f-ef0c11398658",
+        "timestamp": "2026-02-28T23:32:22.982609",
+        "agent_name": "System",
+        "model_used": "google/gemini-2.0-flash-001",
+        "action": "ANALYSIS",
+        "details": {
+            "input_prompt": "Fin du Refactoring Swarm",
+            "output_response": "Traitement terminé: {'files_processed': 3, 'files_fixed': 3, 'files_failed': 0, 'total_iterations': 3}",
+            "stats": {
+                "files_processed": 3,
+                "files_fixed": 3,
+                "files_failed": 0,
+                "total_iterations": 3
+            }
+        },
+        "status": "SUCCESS"
+    }
+]
